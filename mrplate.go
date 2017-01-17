@@ -9,6 +9,7 @@ import (
 	"gobot.io/x/gobot/platforms/firmata/client"
 	"github.com/tarm/serial"
 	"log"
+	"image/color"
 )
 
 const (
@@ -34,6 +35,13 @@ func main() {
 		log.Fatal(err)
 	}
 
+	fmt.Println("Test Sequence.....")
+
+	plate.Display.Set(0, 0, color.White)
+	plate.Display.Set(64, 16, color.White)
+	plate.Display.Set(127, 31, color.White)
+	plate.Display.Display()
+
 	<- time.After(10 * time.Second)
 	defer plate.Disconnect()
 }
@@ -48,7 +56,7 @@ func NewMrPlate(comPort string) *MrPlate {
 	board := client.New()
 	return &MrPlate{
 		ComPort: comPort,
-		Display: ctrl.NewSsd1306Display(comPort, PinDisplayReset, LcdAddress, board),
+		Display: ctrl.NewSsd1306Display(PinDisplayReset, LcdAddress, board),
 		Board: board,
 	}
 }
@@ -73,21 +81,50 @@ func (p *MrPlate) InitAndConnect() error {
 		return err
 	}
 
-	fmt.Println("Starting Display Sequence.....")
-	p.Display.Display()
-
-	<- time.After(1 * time.Second)
 	fmt.Println("Clearing Sequence.....")
 	p.Display.ClearDisplayBuffer()
 	p.Display.Display()
 
-	fmt.Println("Test Sequence.....")
-	<- time.After(1 * time.Second)
-	p.Display.Test()
-	p.Display.Display()
 	return nil
 }
-
 func (p *MrPlate) Disconnect() {
   p.Display.Disconnect()
 }
+func (p *MrPlate) PrintInfo() {
+	fmt.Println("firmware name : ", p.Board.FirmwareName)
+	fmt.Println("firmata version : ", p.Board.ProtocolVersion)
+}
+
+/*
+func (p *Ssd1306Display) Test() {
+
+	p.Set(0, 0, color.White)
+	p.Set(2, 0, color.White)
+	p.Set(5, 0, color.White)
+	p.Set(10, 0, color.White)
+
+
+	gc := draw2dimg.NewGraphicContext(p.Image)
+
+	// Set some properties
+	gc.SetFillColor(color.Black)
+	gc.SetStrokeColor(color.White)
+	gc.SetLineWidth(3)
+
+	//gc.ArcTo(128 / 2, 32 / 2, 10, 10, 0, 2 * math.Pi)
+
+	//draw2dkit.Circle(gc, 0, 0, 10)
+	draw2dkit.RoundedRectangle(gc, 2, 2, 126, 30, 5, 5)
+	gc.FillStroke()
+
+	// Text
+	gc.SetFontData(draw2d.FontData{Name: "luxi", Family: draw2d.FontFamilySans, Style: draw2d.FontStyleBold})
+	// Set the fill text color to black
+	gc.SetFillColor(image.White)
+	gc.SetStrokeColor(image.White)
+	gc.SetFontSize(10)
+	// Display Hello World
+	gc.FillStringAt("Hello World", 0, 20)
+
+}
+*/
