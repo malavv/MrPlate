@@ -10,6 +10,8 @@ import (
 	"github.com/tarm/serial"
 	"log"
 	"image/color"
+	"image"
+	"image/draw"
 )
 
 const (
@@ -37,9 +39,29 @@ func main() {
 
 	fmt.Println("Test Sequence.....")
 
-	plate.Display.Set(0, 0, color.White)
-	plate.Display.Set(64, 16, color.White)
-	plate.Display.Set(127, 31, color.White)
+	// Looking into
+  //   func NewGraphicContextWithPainter(img draw.Image, painter Painter) *GraphicContext {
+
+	// Check also
+	// NewMonochromePainter creates a new MonochromePainter that wraps the given
+	// Painter.
+	//
+	// func NewMonochromePainter(p Painter) *MonochromePainter {
+	//   return &MonochromePainter{Painter: p}
+  // }
+
+	wh := &image.Uniform{C: color.White}
+
+
+
+
+	ctrl.Rect(plate.Display, image.Rect(1, 1,63, 15), 3, wh, image.ZP, draw.Src)
+	ctrl.Rect(plate.Display, image.Rect(65, 1,126, 15), 3, wh, image.ZP, draw.Src)
+
+	for i := 0; i < 128; i += 4 {
+		plate.Display.Set(i, 25, color.White)
+	}
+
 	plate.Display.Display()
 
 	<- time.After(10 * time.Second)
