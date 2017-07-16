@@ -60,7 +60,9 @@ void setup() {
   Display.clearDisplay();
   Display.display();
 
-  initSerialCommunication(5 /* timeToWaitIn100Ms */);
+  initSerialCommunication(10 /* timeToWaitIn100Ms */);
+
+  Serial.println("const String &s");
 
   setState(states[StateType::Welcome]);
 }

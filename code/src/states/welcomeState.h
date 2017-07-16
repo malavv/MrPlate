@@ -3,6 +3,8 @@
 
 #include "state.h"
 #include "bus.h"
+#include "anim/textAnim.h"
+#include "anim/markeeAnim.h"
 
 class WelcomeState : public State {
 
@@ -14,8 +16,11 @@ public:
   virtual void onLeaving();
 
 private:
-    const char* WelcomeMsg = "Mr. Plate welcomes you to some yeast extravaganza v1.0";
-
+  const char* WelcomeMsg = "MrPlate welcomes you to a yeast extravaganza v1.0";
+  const StateType next = StateType::MainMenu;
+  TextAnimation animation1;
+  MarkeeAnimation animation2;
+  uint8_t state;
 };
 
 #endif // WELCOME_STATE_H

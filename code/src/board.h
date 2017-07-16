@@ -4,6 +4,7 @@
 #include <stdint.h>
 
 #define nil 0
+#define kIsDebug false
 
 /** Free Wheeling Delay for the main loop */
 const unsigned long loopDelayMs = 30;
