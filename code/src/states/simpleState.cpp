@@ -4,62 +4,43 @@
 
 #include <algorithm>
 #include "board.h"
+#include "drivers/button.h"
+#include "drivers/pwm.h"
 
 extern Adafruit_SSD1306 Display;
+extern PwmDriver pwm;
+extern ButtonDriver btn1;
+extern ButtonDriver btn2;
 
-SimpleState::SimpleState(EventBus& bus) : State(StateType::Simple, bus) {
-  isBtn1Pressed = false;
-  isBtn2Pressed = false;
-  powerLevel = 0;
-}
+SimpleState::SimpleState(EventBus& bus) : State(StateType::Simple, bus) {}
 SimpleState::~SimpleState() {}
+
 void SimpleState::onEntering() {
-  analogWriteResolution(numDigits); // Setting Highest Possible
-  analogWriteFrequency(Pin::kPwm, 	freq);
-  isBtn1Pressed = false;
-  isBtn2Pressed = false;
-  powerLevel = 0;
-  startTime = now();
-  setTime(0);
+  pwm.setResolution(numDigits);
+  maxDuty = pwm.getMaxDutyCyle();
+  duty = 0;
+  setTime(0); /* Reset Board Internal Clock (to then use hours(), ...) */
 }
 
 void SimpleState::handleButton(const std::shared_ptr<const ButtonEvent>& evt) {
-
-  if (evt->pin == Pin::kBtn1) {
-    if (evt->action == ButtonAction::PRESSED) {
-      isBtn1Pressed = true;
-      btn1SetTimeMs = millis();
-    } else {
-      isBtn1Pressed = false;
-    }
-  }
-
-  if (evt->pin == Pin::kBtn2) {
-    if (evt->action == ButtonAction::PRESSED) {
-      isBtn2Pressed = true;
-      btn2SetTimeMs = millis();
-    } else {
-      isBtn2Pressed = false;
-    }
-  }
-
-  if (isBtn1Pressed && isBtn2Pressed)
+  if (btn1.isPressed() && btn2.isPressed())
     bus.post(new StateChangeEvent(StateType::MainMenu));
 
   // Check Single Button Tap.
   // The reason it is on release and not on pressed is for the ability to get both
   // the hold functionality and going back on two button pressed.
   if (evt->action == ButtonAction::RELEASED) {
-    if (evt->pin == Pin::kBtn1) inc(maxPowerLvl / 40);
-    if (evt->pin == Pin::kBtn2) dec(maxPowerLvl / 40);
+    if (evt->pin == Pin::kBtn2) dec(maxPowerLvl / _dutyFrac);
+    if (evt->pin == Pin::kBtn1) inc(maxPowerLvl / _dutyFrac);
   }
 }
 
 void SimpleState::inc(uint16_t deltaPower) {
-  powerLevel = std::min((uint16_t)(powerLevel + deltaPower), maxPowerLvl);
+  duty = duty + deltaPower > maxPowerLvl ? maxPowerLvl : duty + deltaPower;
 }
+
 void SimpleState::dec(uint16_t deltaPower) {
-  powerLevel = powerLevel < (minPowerLvl + deltaPower) ? minPowerLvl : powerLevel - deltaPower;
+  duty = duty < deltaPower ? 0 : duty - deltaPower;
 }
 
 void SimpleState::loop(const std::shared_ptr<const Event>& evt) {
@@ -79,18 +60,18 @@ void SimpleState::loop(const std::shared_ptr<const Event>& evt) {
   // Power Level
   Display.setTextSize(2);
   Display.setCursor(5, SSD1306_LCDHEIGHT / 2);
-  Display.printf("%04d/%d", powerLevel, maxPowerLvl);
+  uint32_t displayp = ((float) duty / (float)maxPowerLvl) * 10000;
+  uint32_t top = displayp / 100;
+  Display.printf("%3d.%02d%%\n", top, displayp - (top * 100));
 
   Display.display();
-
-  analogWrite(Pin::kPwm, powerLevel);
+  pwm.setDutyCycle(duty);
 }
 
 void SimpleState::onLeaving() {
   Display.clearDisplay();
-  powerLevel = 0;
-  analogWriteResolution(8); // Reverting to default
-  analogWriteFrequency(Pin::kPwm, 488); // Reverting to default
+  duty = 0;
+  pwm.setResolution(8); // Reverting to default
 }
 
 void SimpleState::digitalClockDisplay() {

@@ -18,8 +18,8 @@ public:
 private:
   const char* WelcomeMsg = "MrPlate welcomes you to a yeast extravaganza v1.0";
   const StateType next = StateType::MainMenu;
-  TextAnimation animation1;
-  MarkeeAnimation animation2;
+  TextAnimation textAnim;
+  MarkeeAnimation markeeAnim;
   uint8_t state;
 };
 

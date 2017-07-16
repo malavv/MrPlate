@@ -6,6 +6,7 @@
 
 #include "board.h"
 #include "drivers/button.h"
+#include "drivers/pwm.h"
 
 #include "states/mainMenuState.h"
 #include "states/simpleState.h"
@@ -17,6 +18,8 @@ Adafruit_SSD1306 Display(Pin::kDisplayRst);
 // Control Button
 ButtonDriver btn1(Pin::kBtn1);
 ButtonDriver btn2(Pin::kBtn2);
+// PWM Management
+PwmDriver pwm(Pin::kPwm);
 // App. main Event Bus
 EventBus bus;
 // Current State
@@ -60,11 +63,20 @@ void setup() {
   Display.clearDisplay();
   Display.display();
 
-  initSerialCommunication(10 /* timeToWaitIn100Ms */);
+  initSerialCommunication(30 /* timeToWaitIn100Ms */);
 
-  Serial.println("const String &s");
-
+  Serial.println("[INFO] Moving to Welcome State");
   setState(states[StateType::Welcome]);
+}
+
+void processGlobalEvent(std::shared_ptr<const Event>& event) {
+  switch (event->type) {
+    case EventType::kStateChange: {
+      setState(states[std::static_pointer_cast<const StateChangeEvent>(event)->state]);
+      break;
+    }
+    default: return;
+  }
 }
 
 void loop() {
@@ -72,10 +84,9 @@ void loop() {
 
   std::shared_ptr<const Event> evt = bus.next();
 
-  // If state change event;
-  if (evt != nil && evt->type == EventType::kStateChange) {
-    setState(states[std::static_pointer_cast<const StateChangeEvent>(evt)->state]);
-  }
+  // If Global Event
+  if (evt != nil)
+    processGlobalEvent(evt);
 
   // Then Loop the current state with any given event.
   currentState->loop(evt);

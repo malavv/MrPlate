@@ -18,9 +18,7 @@ private:
   enum Choice {
     Simple,
     Advanced
-  };
-
-  Choice choice;
+  } choice ;
 
   void printChoiceIndicator(Choice choice);
   void printMainMenu();

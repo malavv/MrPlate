@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define nil 0
-#define kIsDebug false
+#define kIsDebug true
 
 /** Free Wheeling Delay for the main loop */
 const unsigned long loopDelayMs = 30;
@@ -36,7 +36,8 @@ const char * const StateTypeNames[] = {
 
 enum EventType : uint8_t {
     kBtn,
-    kStateChange
+    kStateChange,
+    kPwmCmd
 };
 
 #endif // BOARD_H_

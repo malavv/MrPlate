@@ -17,12 +17,13 @@ public:
   virtual void onLeaving();
 
 private:
-    bool isBtn1Pressed, isBtn2Pressed;
-    uint16_t powerLevel;
-    const uint16_t minPowerLvl = 0, maxPowerLvl = 2048, numDigits = 11, freq = 23438;
+  // Each press inc/dec by 1/_dutyFrac of max duty.
+  const uint32_t _dutyFrac = 40;
 
-    uint32_t btn1SetTimeMs, btn2SetTimeMs;
-    time_t startTime;
+  uint32_t duty;
+  uint32_t maxDuty;
+
+    const uint16_t minPowerLvl = 0, maxPowerLvl = 2048, numDigits = 11;
 
     void printDigits(int digits);
     void digitalClockDisplay();
