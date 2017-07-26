@@ -52,7 +52,7 @@ void setup() {
   pinMode(Pin::kDebugLed, OUTPUT);
 
   // Running Light is First Step to Help Debugging
-  digitalWrite(Pin::kDebugLed, true /* Is Debug Signal On */);
+  digitalWrite(Pin::kDebugLed, kIsDebug);
 
   // Register Buttons on the Event Bus.
   btn1.registerInterrupt([]{ btn1.onChange(bus); }, CHANGE);
