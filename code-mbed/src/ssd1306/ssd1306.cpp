@@ -44,11 +44,10 @@ All text above, and the splash screen below must be included in any redistributi
 #define SSD1306_COMSCANDEC 0xC8
 #define SSD1306_SEGREMAP 0xA0
 #define SSD1306_CHARGEPUMP 0x8D
-
-uint16_t offset(uint16_t x, uint16_t y);
+#define SSD1306_WIDTH 128
 
 Adafruit_SSD1306_::Adafruit_SSD1306_(I2C& com, PinName rstPin, uint8_t height)
-    : _com(com), _reset(rstPin), _image(128/* x32 or x64 */, height, kBlack) {
+    : _com(com), _reset(rstPin), _image(SSD1306_WIDTH, height, kBlack) {
 }
 
 void Adafruit_SSD1306_::init(uint8_t addr) {
@@ -127,7 +126,7 @@ void Adafruit_SSD1306_::draw(int16_t x, int16_t y, ImageMono& image) {
   buff1[0] = 0x40;
 
   for (int t = 0; t < 4; t++) { /* Per Page Row */
-    for (int tx = 0; tx < 128; tx++) { /* The Whole Line */
+    for (int tx = 0; tx < SSD1306_WIDTH; tx++) { /* The Whole Line */
       for (int ty = 0; ty < 8; ty++) { /* 8 pix deep from top to bottom */
         if (_image.at(tx, ty + t * 8) == kWhite)
           buff1[tx % 16 + 1] |= 1 << (ty % 8);

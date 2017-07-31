@@ -34,45 +34,44 @@ All text above, and the splash screen below must be included in any redistributi
  */
 class Adafruit_SSD1306_ {
 public:
-  #define DEFAULT_I2C_ADDR 0x78
-  #define DEFAULT_HEIGHT 32
-  #define COLOUR_BLACK 0
-  #define COLOUR_WHITE 1
-  #define COLOUR_TRANS 2
+  #define SSD1306_DFLT_I2C_ADDR 0x78
+  #define SSD1306_DFLT_HEIGHT 32
 
   /**
    * Creates an I2C driver to the SSD1306 module.
    *
-   * Note there are no size parameter on the constructor. The caller will
-   * therefore have the choice to print outside of the drawspace. Doing this
-   * will just result in no pixel being shown.
+   * The particularity of this connector is that it only draws "images" in the
+   * drawspace. Therefore, any graphic processing must be done on an image,
+   * and then the image with transparency is pushed to the connector.
    *
    * @param com I2C communication BUS
    * @param rstPin The Pin used for reset
-   * @param width [128] Width of the drawspace
    * @param height [32] Height of the drawspace
-   * @param addr [Default I2C address] The address for the module
    */
-  Adafruit_SSD1306_(I2C& com, PinName rstPin, uint8_t height = DEFAULT_HEIGHT);
+  Adafruit_SSD1306_(I2C& com, PinName rstPin, uint8_t height = SSD1306_DFLT_HEIGHT);
+  /** Deconstruct the connector */
   ~Adafruit_SSD1306_();
 
   /**
-   * Draws a colour buffer on the display.
+   * Draws an image in the drawspace.
    *
    * Drawing outside the drawspace is allowed but obviously won't show. The
    * colour space allows for transparent pixels.
    */
   void draw(int16_t x, int16_t y, ImageMono& image);
+  /** Inverts the pixel of the display */
   void invert(bool i);
-  void init(uint8_t addr = DEFAULT_I2C_ADDR);
+  /** Initialization routine for the connector. */
+  void init(uint8_t addr = SSD1306_DFLT_I2C_ADDR);
+  /** Clears (with kBlack) the background of the drawspace. */
   void clear();
 
 private:
   uint8_t _addr;
   I2C& _com;
-  DigitalOut _reset;
   ImageMonoImpl _image;
-
+  DigitalOut _reset;
+  // Sends a command on the I2C bus.
   void cmd(uint8_t cmd);
 };
 
