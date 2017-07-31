@@ -23,6 +23,7 @@ All text above, and the splash screen below must be included in any redistributi
 #define SSD1306_h
 
 #include "mbed.h"
+#include "ImageMono.h"
 
 /**
  * Adafruit SSD1306 Driver class
@@ -34,6 +35,7 @@ All text above, and the splash screen below must be included in any redistributi
 class Adafruit_SSD1306_ {
 public:
   #define DEFAULT_I2C_ADDR 0x78
+  #define DEFAULT_HEIGHT 32
   #define COLOUR_BLACK 0
   #define COLOUR_WHITE 1
   #define COLOUR_TRANS 2
@@ -51,7 +53,7 @@ public:
    * @param height [32] Height of the drawspace
    * @param addr [Default I2C address] The address for the module
    */
-  Adafruit_SSD1306_(I2C& com, PinName rstPin, uint8_t width = 128, uint8_t height = 32, uint8_t addr = DEFAULT_I2C_ADDR);
+  Adafruit_SSD1306_(I2C& com, PinName rstPin, uint8_t height = DEFAULT_HEIGHT);
   ~Adafruit_SSD1306_();
 
   /**
@@ -60,18 +62,16 @@ public:
    * Drawing outside the drawspace is allowed but obviously won't show. The
    * colour space allows for transparent pixels.
    */
-  void draw(int16_t x, int16_t y, int16_t width, int16_t height, uint8_t* data);
+  void draw(int16_t x, int16_t y, ImageMono& image);
   void invert(bool i);
-  void init();
+  void init(uint8_t addr = DEFAULT_I2C_ADDR);
   void clear();
 
 private:
   uint8_t _addr;
   I2C& _com;
-  uint8_t _height;
   DigitalOut _reset;
-  uint8_t _width;
-  uint8_t* _buffer;
+  ImageMonoImpl _image;
 
   void cmd(uint8_t cmd);
 };

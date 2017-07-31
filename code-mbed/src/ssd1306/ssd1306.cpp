@@ -47,13 +47,12 @@ All text above, and the splash screen below must be included in any redistributi
 
 uint16_t offset(uint16_t x, uint16_t y);
 
-Adafruit_SSD1306_::Adafruit_SSD1306_(I2C& com, PinName rstPin, uint8_t width, uint8_t height, uint8_t addr)
-    : _addr(addr), _com(com), _height(height), _reset(rstPin), _width(width) {
-  _buffer = new uint8_t[_width * _height];
-  memset(_buffer, COLOUR_BLACK, _width * _height);
+Adafruit_SSD1306_::Adafruit_SSD1306_(I2C& com, PinName rstPin, uint8_t height)
+    : _com(com), _reset(rstPin), _image(128/* x32 or x64 */, height, kBlack) {
 }
 
-void Adafruit_SSD1306_::init() {
+void Adafruit_SSD1306_::init(uint8_t addr) {
+  _addr = addr;
   _reset = 1;
   // VDD (3.3V) goes high at start, lets just chill for a ms
   wait_ms(1);
@@ -70,7 +69,7 @@ void Adafruit_SSD1306_::init() {
   cmd(0x80);  // the suggested ratio 0x80
 
   cmd(SSD1306_SETMULTIPLEX);
-  cmd(_height - 1);
+  cmd(_image.height - 1);
 
   cmd(SSD1306_SETDISPLAYOFFSET);
   cmd(0x0);  // no offset
@@ -88,10 +87,10 @@ void Adafruit_SSD1306_::init() {
   cmd(SSD1306_COMSCANDEC);
 
   cmd(SSD1306_SETCOMPINS);
-  cmd(_height == 32 ? 0x02 : 0x12);  // TODO - calculate based on _rawHieght ?
+  cmd(_image.height == 32 ? 0x02 : 0x12);  // TODO - calculate based on _rawHieght ?
 
   cmd(SSD1306_SETCONTRAST);
-  cmd(_height == 32 ? 0x8F :  0xCF );
+  cmd(_image.height == 32 ? 0x8F :  0xCF );
 
   cmd(SSD1306_SETPRECHARGE);
   cmd(0x22);
@@ -108,18 +107,14 @@ void Adafruit_SSD1306_::init() {
 
 Adafruit_SSD1306_::~Adafruit_SSD1306_() {}
 
-void Adafruit_SSD1306_::draw(int16_t x, int16_t y, int16_t width, int16_t height, uint8_t* data) {
-  // Check if nothing to draw
-  if ((width - x) <= 0) return;
-  if ((height - y) <= 0) return;
-
+void Adafruit_SSD1306_::draw(int16_t x, int16_t y, ImageMono& image) {
   // Copy to internal buffer
-  for (int16_t i = 0; i < _width; i++) {
-    for (int16_t j = 0; j < _height; j++) {
-      if (i < x || i >= width) continue;
-      if (j < y || j >= height) continue;
-      if (data[offset(i, j)] == COLOUR_TRANS) continue;
-      _buffer[offset(i, j)] = data[offset(i, j)];
+  for (int16_t i = 0; i < _image.width; i++) {
+    for (int16_t j = 0; j < _image.height; j++) {
+      if (i < x || i >= image.width) continue;
+      if (j < y || j >= image.height) continue;
+      if (image.at(i, j) == kTrans) continue;
+      _image.set(i, j, image.at(i, j));
     }
   }
 
@@ -134,7 +129,7 @@ void Adafruit_SSD1306_::draw(int16_t x, int16_t y, int16_t width, int16_t height
   for (int t = 0; t < 4; t++) { /* Per Page Row */
     for (int tx = 0; tx < 128; tx++) { /* The Whole Line */
       for (int ty = 0; ty < 8; ty++) { /* 8 pix deep from top to bottom */
-        if (_buffer[offset(tx, ty + t * 8)] == COLOUR_WHITE)
+        if (_image.at(tx, ty + t * 8) == kWhite)
           buff1[tx % 16 + 1] |= 1 << (ty % 8);
         else
           buff1[tx % 16 + 1] &= ~(1 << (ty % 8));
@@ -150,12 +145,6 @@ void Adafruit_SSD1306_::invert(bool i) {
 }
 
 void Adafruit_SSD1306_::clear() {
-  cmd(SSD1306_SETLOWCOLUMN | 0x0 /* Low Column at 0 */);
-  cmd(SSD1306_SETHIGHCOLUMN | 0x0 /* High Column at 0 */);
-  cmd(SSD1306_SETSTARTLINE | 0x0 /* Start line at 0 */);
-
-  char buff[17] = {0};
-  buff[0] = 0x40; /* Data Mode */
-  for (uint16_t i = 0; i < _width * _height / 8; i++)
-    _com.write(_addr, buff, 17 /* sizeof(buff) */);
+  ImageFixed black(_image.width, _image.height, kBlack);
+  draw(0, 0, black);
 }

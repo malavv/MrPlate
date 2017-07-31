@@ -3,32 +3,30 @@
 #include "USBSerial.h"
 #include "Adafruit_SSD1306.h"
 #include "ssd1306/ssd1306.h"
-
+#include "ssd1306/imageMono.h"
+#include <stdio.h>
 #include <string.h>
 #include <string>
 
 #define WIDTH 128
 #define HEIGHT 32
 
+const bool kIsDebug = true;
+const char* kWelcomeMsg = "MrPlate welcomes you to a yeast extravaganza v1.0\n";
+
 // Global Objects
 Queue<uint32_t, 5> queue;
 DigitalOut debugLed(LED1);
 USBSerial com;
-uint8_t image[WIDTH * HEIGHT] = {0};
-const bool kIsDebug = true;
-const char* kWelcomeMsg = "MrPlate welcomes you to a yeast extravaganza v1.0\n";
+
 std::string logs;
-//struct I2c : I2C { I2c(PinName sda, PinName scl) : I2C(sda, scl)  { frequency(400000); start(); }; } i2c(D18, D19);
 I2C i2c(D18, D19);
-//  { frequency(400000); start(); }; } i2c(D18, D19);
-//Adafruit_SSD1306_I2c display2(i2c, D20);
 Adafruit_SSD1306_ display(i2c, D20);
 Thread thread_cmd;
+ImageMonoImpl img(WIDTH, HEIGHT);
+
 // Pre Declaration of Functions
 void com_menu();
-uint16_t offset(uint16_t x, uint16_t y) {
-  return y * WIDTH + x;
-}
 
 // Entry point
 int main (void) {
@@ -41,18 +39,20 @@ int main (void) {
   display.init();
 
   for (int x = 0; x < 128; x++) {
-    image[offset(x, 0)] = 1;
-    image[offset(x, 31)] = 1;
+    img.set(x, 0, kWhite);
+    img.set(x, 15, kWhite);
+    img.set(x, 31, kWhite);
   }
   for (int y = 0; y < 32; y++) {
-    image[offset(0, y)] = 1;
-    image[offset(127, y)] = 1;
+    img.set(0, y, kWhite);
+    img.set(127, y, kWhite);
   }
 
-  display.draw(0, 0, 128, 32, image);
+  display.draw(0, 0, img);
 
   // Initial Text
   logs.append("[INFO] Printing Welcome Text\n");
+
 /*
   display.setTextWrap(true);
   display.setTextColor(WHITE);
@@ -80,7 +80,7 @@ int main (void) {
 */
   // Print Choice
   logs.append("[INFO] Printing Default Simple Choice\n");
-  const char choice = 'L';
+  //const char choice = 'L';
   /*
   display.drawFastHLine(0, 32 - 2, (128 / 2) - 10,
                         choice == 'L'? WHITE : BLACK);
