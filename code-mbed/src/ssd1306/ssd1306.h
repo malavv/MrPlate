@@ -23,7 +23,7 @@ All text above, and the splash screen below must be included in any redistributi
 #define SSD1306_h
 
 #include "mbed.h"
-#include "ImageMono.h"
+#include "imageMono/image.h"
 
 /**
  * Adafruit SSD1306 Driver class

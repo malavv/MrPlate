@@ -1,9 +1,10 @@
 #include "mbed.h"
 #include "rtos.h"
 #include "USBSerial.h"
-#include "Adafruit_SSD1306.h"
 #include "ssd1306/ssd1306.h"
-#include "ssd1306/imageMono.h"
+#include "imageMono/image.h"
+#include "gfx/adafruit.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <string>
@@ -24,6 +25,7 @@ I2C i2c(D18, D19);
 Adafruit_SSD1306_ display(i2c, D20);
 Thread thread_cmd;
 ImageMonoImpl img(WIDTH, HEIGHT);
+MonoGfx imggfx(WIDTH, HEIGHT);
 
 // Pre Declaration of Functions
 void com_menu();
@@ -38,30 +40,25 @@ int main (void) {
   i2c.start();
   display.init();
 
-  for (int x = 0; x < 128; x++) {
-    img.set(x, 0, kWhite);
-    img.set(x, 15, kWhite);
-    img.set(x, 31, kWhite);
-  }
-  for (int y = 0; y < 32; y++) {
-    img.set(0, y, kWhite);
-    img.set(127, y, kWhite);
-  }
+  //imggfx.drawFastHLine(0, 0, 127, kWhite);
+  //imggfx.drawFastHLine(0, 31, 127, kWhite);
+  //imggfx.drawFastVLine(0, 0, 31, kWhite);
+  //imggfx.drawFastVLine(127, 0, 31, kWhite);
 
-  display.draw(0, 0, img);
+  //display.draw(0, 0, imggfx.image());
 
   // Initial Text
   logs.append("[INFO] Printing Welcome Text\n");
 
-/*
-  display.setTextWrap(true);
-  display.setTextColor(WHITE);
-  display.setTextCursor(0, 0);
-  display.clearDisplay();
-  display.printf(kWelcomeMsg);
-  display.display();
-  display.display();
-*/
+  imggfx.setTextWrap(true);
+  imggfx.setTextColor(kWhite);
+  imggfx.setTextCursor(0, 0);
+  //imggfx.fillRect(0, 0, 128, 32, kBlack);
+  imggfx.printf(kWelcomeMsg);
+
+  display.draw(0, 0, imggfx.image());
+
+
   Thread::wait(2000);
 
   // Print Menu
