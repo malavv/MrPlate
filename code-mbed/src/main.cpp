@@ -33,6 +33,8 @@ I2C i2c(D18, D19);
 Adafruit_SSD1306_ display(i2c, D20);
 InterruptIn btn1(D14);
 DigitalIn btn1_in(D14);
+InterruptIn btn2(D15);
+DigitalIn btn2_in(D15);
 
 char logBuffer[1000];
 uint16_t logCursor = 0;
@@ -52,12 +54,42 @@ const uint8_t kEnterModeEvent = 1;
 uint8_t state = kUnknownState;
 uint8_t chosenMode = kPowerModulation;
 
-struct MenuMode {
-  uint8_t mode;
-  void handleBtn1Pressed();
+const char* menuModeTxt = "MenuMode";
+
+class Mode {
+  public:
+    Mode(uint8_t type, const char* name) : name(name), type(type) { }
+    virtual ~Mode() { }
+    virtual void handleBtn1Pressed() { }
+    virtual void handleBtn2Pressed() { }
+    virtual void onEnter() { }
+    virtual void onExit() { }
+
+    const char* name;
+    uint8_t type;
 };
 
-MenuMode menuMode = { .mode = kPowerModulation };
+class MenuMode : public Mode {
+  public:
+    uint8_t mode;
+
+    MenuMode(uint8_t type, const char* name) : Mode(type, name), mode(kPowerModulation) { }
+    virtual ~MenuMode() { }
+    virtual void handleBtn1Pressed();
+    virtual void handleBtn2Pressed();
+    virtual void onEnter();
+};
+
+class PowerModulationMode : public Mode {
+  public:
+    PowerModulationMode(uint8_t type, const char* name) : Mode(type, name) { }
+    virtual ~PowerModulationMode() { }
+    virtual void onEnter();
+};
+
+Mode* cmode = 0;
+MenuMode menuMode(kMenuState, menuModeTxt);
+PowerModulationMode powerMode(kPowerModulationState, "PowerModulationMode\0");
 
 // Pre Declaration of Functions
 void com_menu();
@@ -69,24 +101,15 @@ void print_menu();
 
 void log(const char *format, ...);
 
-void MenuMode::handleBtn1Pressed() {
-  mode = mode == kPowerModulation ? kAdvanced : kPowerModulation;
-
-  MonoGfx selection(kWidth, kHeight);
-  selection.fillRect(0, kHeight - 2, kWidth, 1, kBlack);
-  selection.drawFastHLine(mode == kPowerModulation ? 0 : kWidth / 2, kHeight - 2, (kWidth / 2) - 10, kWhite);
-  display.draw(0, 0, selection.image());
-  display.draw(0, 0, selection.image());
-  log("[INFO] Menu is changing selection\n");
-}
-
 void btn_pressed_1() {
-  isSimpleState != isSimpleState;
   queue.call(&menuMode, &MenuMode::handleBtn1Pressed);
 }
+void btn_pressed_2() {
+  queue.call(&menuMode, &MenuMode::handleBtn2Pressed);
+}
 
-void exited(uint8_t state);
-void entering(uint8_t state);
+void exited(Mode& mode);
+void entering(Mode& mode);
 void moveTo(uint8_t newState);
 
 // Entry point
@@ -97,6 +120,8 @@ int main (void) {
   display.init();
   btn1_in.mode(PullNone);
   btn1.fall(queue.event(btn_pressed_1));
+  btn2_in.mode(PullNone);
+  btn2.fall(queue.event(btn_pressed_2));
   // Start Threads
   com_thread.start(com_menu);
   eventThread.start(callback(&queue, &EventQueue::dispatch_forever));
@@ -109,34 +134,72 @@ int main (void) {
   queue.call(moveTo, kMenuState);
 
   while (true) {
-    /*
-    if (state == kMenuState) {
-      if (event == kChangeModeEvent)
-        chosenMode = kPowerModulation ? kAdvanced : kPowerModulation;
-      else if (event == kEnterModeEvent)
-        moveTo(chosenMode == kPowerModulation ? kPowerModulationState : kAdvancedModeState);
-    }
-    */
-
     Thread::wait(500);
   }
 }
 
-void exited(uint8_t state) {
-  log("[INFO] Exiting State : %u\n", state);
+void MenuMode::handleBtn1Pressed() {
+  mode = mode == kPowerModulation ? kAdvanced : kPowerModulation;
+
+  MonoGfx selection(kWidth, kHeight);
+  selection.fillRect(0, kHeight - 2, kWidth, 1, kBlack);
+  selection.drawFastHLine(mode == kPowerModulation ? 0 : kWidth / 2, kHeight - 2, (kWidth / 2) - 10, kWhite);
+  display.draw(0, 0, selection.image());
+  display.draw(0, 0, selection.image());
+  log("[INFO] Menu is changing selection\n");
 }
-void entering(uint8_t state) {
-  log("[INFO] Entering State : %u\n", state);
-  switch(state) {
-    case kMenuState: print_menu(); break;
-  }
+void MenuMode::handleBtn2Pressed() {
+  queue.call(moveTo, mode == kPowerModulation ? kPowerModulationState : kAdvancedModeState);
+}
+void MenuMode::onEnter() {
+  print_menu();
+}
+void PowerModulationMode::onEnter() {
+  time_t now = time(0);   // get time now
+  struct tm* t = localtime(&now);
+  MonoGfx menu(kWidth, kHeight);
+  menu.fillRect(0, 0, kWidth, kHeight, kBlack);
+
+  menu.setTextSize(1);
+  menu.setTextCursor(0, 0);
+  menu.printf("%d:%01d:%01d", t->tm_hour, t->tm_min, t->tm_sec);
+
+  // Power Sign
+  menu.setTextSize(1);
+  menu.setTextCursor(kWidth - 40, 0);
+  menu.printf("Power");
+
+  // Power Level
+  menu.setTextSize(2);
+  menu.setTextCursor(5, kHeight / 2);
+  uint32_t displayp = ((float)5 / (float)100) * 10000;
+  uint32_t top = displayp / 100;
+  menu.printf("%3d.%02d%%\n", top, displayp - (top * 100));
+
+  display.draw(0, 0, menu.image());
+  display.draw(0, 0, menu.image());
+}
+
+void exited(Mode& mode) {
+  if (state == 0)  return;
+  log("[INFO] Exiting State : %s\n", mode.name);
+  mode.onExit();
+}
+void entering(Mode& mode) {
+  if (state == 0)  return;
+  log("[INFO] Entering State : %s\n", mode.name);
+  mode.onEnter();
 }
 void moveTo(uint8_t newState) {
   if (state == newState)
     return;
-  exited(state);
-  entering(newState);
+  exited(*cmode);
   state = newState;
+  switch(state) {
+    case kMenuState: cmode = &menuMode; break;
+    case kPowerModulationState: cmode = &powerMode; break;
+  }
+  entering(*cmode);
 }
 
 void log(const char *format, ...) {
