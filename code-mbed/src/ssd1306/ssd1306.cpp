@@ -48,75 +48,71 @@ All text above, and the splash screen below must be included in any redistributi
 
 Adafruit_SSD1306::Adafruit_SSD1306(I2C& com, PinName rstPin, uint8_t height)
     : _com(com), _reset(rstPin), _image(SSD1306_WIDTH, height, kBlack) {
+  _cmd[0] = SSD1306_CMD_MODE;
 }
 
 void Adafruit_SSD1306::init(uint8_t addr) {
   _addr = addr;
-  _reset = 1;
-  // VDD (3.3V) goes high at start, lets just chill for a ms
-  wait_ms(1);
-  // bring reset low
-  _reset = 0;
-  // wait 10ms
-  wait_ms(10);
-  // bring out of reset
-  _reset = 1;
-  // turn on VCC (9V?)
+  _reset = 1; /* Unset RST Pin (inverted) */
+  wait_ms(1 /* ms */); /* VDD goes high, lets just chill */
+  _reset = 0; /* Set RST Pin (inverted) */
+  wait_ms(10 /* ms */);
+  _reset = 1; /* Unset RST Pin (inverted) */
 
   cmd(SSD1306_DISPLAYOFF);
-  cmd(SSD1306_SETDISPLAYCLOCKDIV);
-  cmd(0x80);  // the suggested ratio 0x80
-
-  cmd(SSD1306_SETMULTIPLEX);
-  cmd(_image.height - 1);
-
-  cmd(SSD1306_SETDISPLAYOFFSET);
-  cmd(0x0);  // no offset
-
-  cmd(SSD1306_SETSTARTLINE | 0x0);  // line #0
-
-  cmd(SSD1306_CHARGEPUMP);
-  cmd(0x14);
-
-  cmd(SSD1306_MEMORYMODE);
-  cmd(0x00);  // 0x0 act like ks0108
-
+  cmd(SSD1306_SETDISPLAYCLOCKDIV, 0x80 /* the suggested ratio */);
+  cmd(SSD1306_SETMULTIPLEX, _image.height - 1);
+  cmd(SSD1306_SETDISPLAYOFFSET, 0 /* no offset */);
+  cmd(SSD1306_SETSTARTLINE | 0 /* line #0 */);
+  cmd(SSD1306_CHARGEPUMP, 0x14);
+  cmd(SSD1306_MEMORYMODE, 0 /* 0x0 act like ks0108 */);
   cmd(SSD1306_SEGREMAP | 0x1);
-
   cmd(SSD1306_COMSCANDEC);
-
-  cmd(SSD1306_SETCOMPINS);
-  cmd(_image.height == 32 ? 0x02 : 0x12);  // TODO - calculate based on _rawHieght ?
-
-  cmd(SSD1306_SETCONTRAST);
-  cmd(_image.height == 32 ? 0x8F :  0xCF );
-
-  cmd(SSD1306_SETPRECHARGE);
-  cmd(0x22);
-
-  cmd(SSD1306_SETVCOMDETECT);
-  cmd(0x40);
-
+  // TODO - calculate based on _rawHieght
+  cmd(SSD1306_SETCOMPINS, _image.height == 32 ? 0x02 : 0x12);
+  cmd(SSD1306_SETCONTRAST, _image.height == 32 ? 0x8F : 0xCF);
+  cmd(SSD1306_SETPRECHARGE, 0x22);
+  cmd(SSD1306_SETVCOMDETECT, 0x40);
   cmd(SSD1306_DISPLAYALLON_RESUME);
-
   cmd(SSD1306_NORMALDISPLAY);
-
   cmd(SSD1306_DISPLAYON);
+}
+
+void Adafruit_SSD1306::draw(int16_t x, int16_t y, ImageMono& image) {
+  _draw(x, y, image);
+  _i2c_send();
+}
+
+void Adafruit_SSD1306::invert(bool i) {
+  cmd(i ? SSD1306_INVERTDISPLAY : SSD1306_NORMALDISPLAY);
+}
+
+void Adafruit_SSD1306::clear() {
+  ImageFixed black(_image.width, _image.height, kBlack);
+  draw(0, 0, black);
+}
+
+void Adafruit_SSD1306::cmd(uint8_t cmd) {
+  _cmd[1] = cmd; _com.write(_addr, _cmd, SSD1306_CMD_SIZE);
+}
+
+void Adafruit_SSD1306::cmd(uint8_t cmd1, uint8_t cmd2) {
+  _cmd[1] = cmd1; _com.write(_addr, _cmd, SSD1306_CMD_SIZE);
+  _cmd[1] = cmd2; _com.write(_addr, _cmd, SSD1306_CMD_SIZE);
 }
 
 Adafruit_SSD1306::~Adafruit_SSD1306() {}
 
-void Adafruit_SSD1306::draw(int16_t x, int16_t y, ImageMono& image) {
-  // Copy to internal buffer
-  for (int16_t i = 0; i < _image.width; i++) {
-    for (int16_t j = 0; j < _image.height; j++) {
-      if (i < x || i >= image.width) continue;
-      if (j < y || j >= image.height) continue;
+void Adafruit_SSD1306::_draw(int16_t x, int16_t y, ImageMono& image) {
+  for (int16_t i = 0; i < image.width; i++) {
+    for (int16_t j = 0; j < image.height; j++) {
       if (image.at(i, j) == kTrans) continue;
-      _image.set(i, j, image.at(i, j));
+      _image.set(x + i, y + j, image.at(i, j));
     }
   }
+}
 
+void Adafruit_SSD1306::_i2c_send() {
   // Write Data to Buffer;
   cmd(SSD1306_SETLOWCOLUMN | 0x0 /* Low Column Start Address  0 */);
   cmd(SSD1306_SETHIGHCOLUMN | 0x0 /* High Column at 0 */);
@@ -137,13 +133,4 @@ void Adafruit_SSD1306::draw(int16_t x, int16_t y, ImageMono& image) {
         _com.write(_addr, buff1, sizeof(buff1));
     }
   }
-}
-
-void Adafruit_SSD1306::invert(bool i) {
-  cmd(i ? SSD1306_INVERTDISPLAY : SSD1306_NORMALDISPLAY);
-}
-
-void Adafruit_SSD1306::clear() {
-  ImageFixed black(_image.width, _image.height, kBlack);
-  draw(0, 0, black);
 }

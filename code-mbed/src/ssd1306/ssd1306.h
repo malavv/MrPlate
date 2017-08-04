@@ -36,6 +36,8 @@ class Adafruit_SSD1306 {
 public:
   #define SSD1306_DFLT_I2C_ADDR 0x78
   #define SSD1306_DFLT_HEIGHT 32
+  #define SSD1306_CMD_MODE 0
+  #define SSD1306_CMD_SIZE 2
 
   /**
    * Creates an I2C driver to the SSD1306 module.
@@ -71,15 +73,13 @@ private:
   I2C& _com;
   ImageMonoImpl _image;
   DigitalOut _reset;
+  char _cmd[2];
+
   // Sends a command on the I2C bus.
   void cmd(uint8_t cmd);
+  void cmd(uint8_t cmd1, uint8_t cmd2);
+  void _draw(int16_t x, int16_t y, ImageMono& image);
+  void _i2c_send();
 };
-
-inline void Adafruit_SSD1306::cmd(uint8_t cmd) {
-  const uint8_t msg[2] = {0x00 /* Command Mode */, cmd};
-  _com.write(_addr, (const char*)msg, 2 /* sizeof(msg) */);
-}
-
-
 
 #endif // SSD1306_h
