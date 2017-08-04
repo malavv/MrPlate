@@ -46,11 +46,11 @@ All text above, and the splash screen below must be included in any redistributi
 #define SSD1306_CHARGEPUMP 0x8D
 #define SSD1306_WIDTH 128
 
-Adafruit_SSD1306_::Adafruit_SSD1306_(I2C& com, PinName rstPin, uint8_t height)
+Adafruit_SSD1306::Adafruit_SSD1306(I2C& com, PinName rstPin, uint8_t height)
     : _com(com), _reset(rstPin), _image(SSD1306_WIDTH, height, kBlack) {
 }
 
-void Adafruit_SSD1306_::init(uint8_t addr) {
+void Adafruit_SSD1306::init(uint8_t addr) {
   _addr = addr;
   _reset = 1;
   // VDD (3.3V) goes high at start, lets just chill for a ms
@@ -104,9 +104,9 @@ void Adafruit_SSD1306_::init(uint8_t addr) {
   cmd(SSD1306_DISPLAYON);
 }
 
-Adafruit_SSD1306_::~Adafruit_SSD1306_() {}
+Adafruit_SSD1306::~Adafruit_SSD1306() {}
 
-void Adafruit_SSD1306_::draw(int16_t x, int16_t y, ImageMono& image) {
+void Adafruit_SSD1306::draw(int16_t x, int16_t y, ImageMono& image) {
   // Copy to internal buffer
   for (int16_t i = 0; i < _image.width; i++) {
     for (int16_t j = 0; j < _image.height; j++) {
@@ -139,11 +139,11 @@ void Adafruit_SSD1306_::draw(int16_t x, int16_t y, ImageMono& image) {
   }
 }
 
-void Adafruit_SSD1306_::invert(bool i) {
+void Adafruit_SSD1306::invert(bool i) {
   cmd(i ? SSD1306_INVERTDISPLAY : SSD1306_NORMALDISPLAY);
 }
 
-void Adafruit_SSD1306_::clear() {
+void Adafruit_SSD1306::clear() {
   ImageFixed black(_image.width, _image.height, kBlack);
   draw(0, 0, black);
 }

@@ -30,7 +30,7 @@ USBSerial com;
 
 // Components
 I2C i2c(D18, D19);
-Adafruit_SSD1306_ display(i2c, D20);
+Adafruit_SSD1306 display(i2c, D20);
 InterruptIn btn1(D14);
 DigitalIn btn1_in(D14);
 InterruptIn btn2(D15);
@@ -152,7 +152,19 @@ void MenuMode::handleBtn2Pressed() {
   queue.call(moveTo, mode == kPowerModulation ? kPowerModulationState : kAdvancedModeState);
 }
 void MenuMode::onEnter() {
-  print_menu();
+  MonoGfx menu(kWidth, kHeight);
+  menu.fillRect(0, 0, kWidth, kHeight, kBlack);
+  menu.setTextColor(kWhite);
+  menu.setTextCursor(10, 0);
+  menu.printf("-- Choose mode --\n");
+  menu.setTextCursor(0, 32 / 2);
+  menu.printf("Simple\n");
+  menu.setTextCursor(kWidth / 2, kHeight / 2);
+  menu.printf("Advanced\n");
+
+  menu.drawFastHLine(0, kHeight - 2, (kWidth / 2) - 10, kWhite);
+  display.draw(0, 0, menu.image());
+  display.draw(0, 0, menu.image());
 }
 void PowerModulationMode::onEnter() {
   time_t now = time(0);   // get time now
@@ -216,21 +228,6 @@ void print_welcome() {
   imggfx.setTextCursor(0, 0);
   imggfx.printf(kWelcomeMsg);
   display.draw(0, 0, imggfx.image());
-}
-void print_menu() {
-  MonoGfx menu(kWidth, kHeight);
-  menu.fillRect(0, 0, kWidth, kHeight, kBlack);
-  menu.setTextColor(kWhite);
-  menu.setTextCursor(10, 0);
-  menu.printf("-- Choose mode --\n");
-  menu.setTextCursor(0, 32 / 2);
-  menu.printf("Simple\n");
-  menu.setTextCursor(kWidth / 2, kHeight / 2);
-  menu.printf("Advanced\n");
-
-  menu.drawFastHLine(0, kHeight - 2, (kWidth / 2) - 10, kWhite);
-  display.draw(0, 0, menu.image());
-  display.draw(0, 0, menu.image());
 }
 
 // Prints the accumulated logs

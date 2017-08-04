@@ -32,7 +32,7 @@ All text above, and the splash screen below must be included in any redistributi
  * with a SSD1306 board. All of the advanced functionalities are to be pushed
  * to a higher level class.
  */
-class Adafruit_SSD1306_ {
+class Adafruit_SSD1306 {
 public:
   #define SSD1306_DFLT_I2C_ADDR 0x78
   #define SSD1306_DFLT_HEIGHT 32
@@ -48,9 +48,9 @@ public:
    * @param rstPin The Pin used for reset
    * @param height [32] Height of the drawspace
    */
-  Adafruit_SSD1306_(I2C& com, PinName rstPin, uint8_t height = SSD1306_DFLT_HEIGHT);
+  Adafruit_SSD1306(I2C& com, PinName rstPin, uint8_t height = SSD1306_DFLT_HEIGHT);
   /** Deconstruct the connector */
-  ~Adafruit_SSD1306_();
+  ~Adafruit_SSD1306();
 
   /**
    * Draws an image in the drawspace.
@@ -75,7 +75,7 @@ private:
   void cmd(uint8_t cmd);
 };
 
-inline void Adafruit_SSD1306_::cmd(uint8_t cmd) {
+inline void Adafruit_SSD1306::cmd(uint8_t cmd) {
   const uint8_t msg[2] = {0x00 /* Command Mode */, cmd};
   _com.write(_addr, (const char*)msg, 2 /* sizeof(msg) */);
 }
