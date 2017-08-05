@@ -35,6 +35,7 @@ InterruptIn btn1(D14);
 DigitalIn btn1_in(D14);
 InterruptIn btn2(D15);
 DigitalIn btn2_in(D15);
+PwmOut pwm(D10);
 
 char logBuffer[1000];
 uint16_t logCursor = 0;
@@ -84,12 +85,13 @@ class MenuMode : public Mode {
 class PowerModulationMode : public Mode {
   public:
     PowerModulationMode(uint8_t type, const char* name)
-      : Mode(type, name), sec(0), _powerPer10000(0), clockDisplay(55, 7) {}
+      : Mode(type, name), sec(0), _powerPer10000(0), clockDisplay(55, 7), deltaPower(10001 / 40) {}
     virtual ~PowerModulationMode() { }
     virtual void handleBtn1Pressed();
     virtual void handleBtn2Pressed();
 
     virtual void onEnter();
+    virtual void onExit();
     virtual void onTick();
 
   private:
@@ -97,7 +99,7 @@ class PowerModulationMode : public Mode {
     uint16_t _powerPer10000;
     MonoGfx clockDisplay;
 
-    const uint16_t deltaPower = 10001 / 40;
+    const uint16_t deltaPower;
 
     void _printPower();
     void _setPower(uint16_t powerPer10000);
@@ -183,6 +185,10 @@ void MenuMode::onEnter() {
   menu.drawFastHLine(0, kHeight - 2, (kWidth / 2) - 10, kWhite);
   display.draw(0, 0, menu.image());
 }
+void PowerModulationMode::onExit() {
+  _powerPer10000 = 0;
+  pwm.write(0);
+}
 void PowerModulationMode::onEnter() {
   sec = 0;
   MonoGfx menu(kWidth, kHeight);
@@ -231,6 +237,7 @@ void PowerModulationMode::_printPower() {
 }
 void PowerModulationMode::_setPower(uint16_t powerPer10000) {
   _powerPer10000 = powerPer10000;
+  pwm.write((float)_powerPer10000 / 10000);
   _printPower();
 }
 
