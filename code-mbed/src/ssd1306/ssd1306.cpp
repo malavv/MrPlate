@@ -104,12 +104,9 @@ void Adafruit_SSD1306::cmd(uint8_t cmd1, uint8_t cmd2) {
 Adafruit_SSD1306::~Adafruit_SSD1306() {}
 
 void Adafruit_SSD1306::_draw(int16_t x, int16_t y, ImageMono& image) {
-  for (int16_t i = 0; i < image.width; i++) {
-    for (int16_t j = 0; j < image.height; j++) {
-      if (image.at(i, j) == kTrans) continue;
+  for (int16_t i = 0; i < image.width; i++)
+    for (int16_t j = 0; j < image.height; j++)
       _image.set(x + i, y + j, image.at(i, j));
-    }
-  }
 }
 
 void Adafruit_SSD1306::_i2c_send() {

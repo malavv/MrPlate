@@ -25,7 +25,11 @@ public:
 
   // Gets the colour of a pixel
   virtual MonoColour at(uint16_t x, uint16_t y) const = 0;
-  // Sets a specific pixel (Not implemented in all sub-classes)
+  /**
+   * Sets a specific pixel (does not print transparent or outside)
+   *
+   * (Not implemented in all sub-classes)
+   */
   virtual void set(uint16_t x, uint16_t y, MonoColour colour) = 0;
   // Is a pixel in the image
   bool contains(uint16_t x, uint16_t y) const { return x < width && y < height; }
@@ -39,7 +43,11 @@ public:
   ImageFixed(uint16_t width, uint16_t height, MonoColour colour)
     : ImageMono(width, height), _colour(colour) {}
 
-  virtual MonoColour at(uint16_t x, uint16_t y) const { return _colour; }
+  // Always the same colour except outside.
+  virtual MonoColour at(uint16_t x, uint16_t y) const {
+    return contains(x, y) ? _colour : kOutside;
+  }
+  // Unimplemented
   virtual void set(uint16_t x, uint16_t y, MonoColour colour) { return; }
 
 private:
@@ -52,15 +60,20 @@ public:
   ImageMonoImpl(uint16_t width, uint16_t height, MonoColour colour = kTrans);
   virtual ~ImageMonoImpl();
 
+  // Gets the colour of a pixel
   virtual MonoColour at(uint16_t x, uint16_t y) const;
+  // Sets a specific pixel (does not print transparent or outside)
   virtual void set(uint16_t x, uint16_t y, MonoColour colour);
 
 private:
-  const uint16_t _numBytes;
   uint8_t* _buffer;
-  static const uint8_t bitPerPixel = 2; // 4 states for white, black, and trans.
-  static const uint8_t pixelPerByte = 4; // amount in package
-  static const uint8_t rightmostPixelMask = 0x3; // 1 for righmost bitPerPixel
+  const uint16_t _numBytes;
+  static const uint8_t pixelPerByte = 4;
+  static const uint8_t numBitsPerPixel = 2; // white, black, and trans so 2 bits
+  static const uint8_t rightmostPixelMask = 0x3; // bitmask for a 2 bit pixel
+
+  MonoColour _getPixelInByte(uint16_t byteOffset, uint8_t pixelIndex) const;
+  void _setPixelInByte(uint16_t byteOffset, uint8_t pixelIndex, MonoColour colour);
 };
 
 #endif // IMG_MONO

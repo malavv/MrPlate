@@ -141,16 +141,18 @@ int main (void) {
 void MenuMode::handleBtn1Pressed() {
   mode = mode == kPowerModulation ? kAdvanced : kPowerModulation;
 
-  MonoGfx selection(kWidth, kHeight);
-  selection.fillRect(0, kHeight - 2, kWidth, 1, kBlack);
-  selection.drawFastHLine(mode == kPowerModulation ? 0 : kWidth / 2, kHeight - 2, (kWidth / 2) - 10, kWhite);
-  display.draw(0, 0, selection.image());
-  display.draw(0, 0, selection.image());
+  MonoGfx selection(kWidth, 1);
+  selection.fillRect(0, 0, kWidth, 1, kBlack);
+  selection.drawFastHLine(mode == kPowerModulation ? 0 : kWidth / 2, 0, (kWidth / 2) - 10, kWhite);
+  display.draw(0, kHeight - 2, selection.image());
+  display.draw(0, kHeight - 2, selection.image());
   log("[INFO] Menu is changing selection\n");
 }
+
 void MenuMode::handleBtn2Pressed() {
   queue.call(moveTo, mode == kPowerModulation ? kPowerModulationState : kAdvancedModeState);
 }
+
 void MenuMode::onEnter() {
   MonoGfx menu(kWidth, kHeight);
   menu.fillRect(0, 0, kWidth, kHeight, kBlack);
@@ -162,10 +164,12 @@ void MenuMode::onEnter() {
   menu.setTextCursor(kWidth / 2, kHeight / 2);
   menu.printf("Advanced\n");
 
+  // Print Initial Choice
   menu.drawFastHLine(0, kHeight - 2, (kWidth / 2) - 10, kWhite);
   display.draw(0, 0, menu.image());
   display.draw(0, 0, menu.image());
 }
+
 void PowerModulationMode::onEnter() {
   time_t now = time(0);   // get time now
   struct tm* t = localtime(&now);

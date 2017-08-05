@@ -7,13 +7,7 @@ ImageMonoImpl::ImageMonoImpl(uint16_t width, uint16_t height, MonoColour colour)
   // Image Mono only has 3 states to care about White, Black, and Trans. Having
   // 3 states means 2 bits per pixel. This class manages the packaging.
   _buffer = new uint8_t[_numBytes];
-
-  const uint8_t setByte =
-      colour == kBlack   ? 0x00 :
-      colour == kWhite   ? 0b01010101 :
-      colour == kTrans   ? 0b10101010 : 0xff;
-
-  std::memset(_buffer, setByte, _numBytes);
+  std::memset(_buffer, (colour << 6) | (colour << 4) | (colour << 2) | colour, _numBytes);
 }
 
 ImageMonoImpl::~ImageMonoImpl() {
@@ -23,20 +17,27 @@ ImageMonoImpl::~ImageMonoImpl() {
 MonoColour ImageMonoImpl::at(uint16_t x, uint16_t y) const {
   if (!contains(x, y))
     return kOutside;
+
   const uint16_t offset = x + y * width;
-  const uint8_t byte = _buffer[offset / pixelPerByte];
-  const uint8_t pixOffsetInByte = offset % pixelPerByte * bitPerPixel;
-  const uint8_t bits = (byte >> pixOffsetInByte) & rightmostPixelMask;
-  return static_cast<MonoColour>(bits);
+  return _getPixelInByte(offset / pixelPerByte, offset % pixelPerByte);
 }
 
 void ImageMonoImpl::set(uint16_t x, uint16_t y, MonoColour colour) {
-  if (!contains(x, y))  return;
+  if (colour == kTrans || colour == kOutside) return;
+  if (!contains(x, y)) return;
 
   const uint16_t offset = x + y * width;
-  const uint8_t byteOffset = offset / pixelPerByte;
-  // Left to Right Associative, if you change this, put parantheses.
-  uint8_t bitOffset = offset % pixelPerByte * bitPerPixel;
-  _buffer[byteOffset] &= ~(rightmostPixelMask << bitOffset); // Clear color
-  _buffer[byteOffset] |= (uint8_t)colour << bitOffset; // Set color
+  _setPixelInByte(offset / pixelPerByte, offset % pixelPerByte, colour);
+}
+
+void ImageMonoImpl::_setPixelInByte(uint16_t byteOffset, uint8_t pixelIndex, MonoColour colour) {
+  // Convert and then safety mask it.
+  const uint8_t data = static_cast<uint8_t>(colour) & rightmostPixelMask;
+  // First Clears the Space then sets the right data.
+  _buffer[byteOffset] &= ~(rightmostPixelMask << (pixelIndex * numBitsPerPixel));
+  _buffer[byteOffset] |= data << (pixelIndex * numBitsPerPixel);
+}
+
+MonoColour ImageMonoImpl::_getPixelInByte(uint16_t byteOffset, uint8_t pixelIndex) const {
+  return static_cast<MonoColour>((_buffer[byteOffset] >> (pixelIndex * numBitsPerPixel)) & rightmostPixelMask);
 }
