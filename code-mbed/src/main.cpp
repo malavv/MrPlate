@@ -40,7 +40,7 @@ char logBuffer[1000];
 uint16_t logCursor = 0;
 Thread com_thread; // Serial Communication Thread
 Thread eventThread;
-EventQueue queue(32 * EVENTS_EVENT_SIZE);
+static EventQueue eventQueue(32 * EVENTS_EVENT_SIZE);
 volatile bool isSimpleState = true;
 
 const uint8_t kUnknownState = 0;
@@ -64,6 +64,7 @@ class Mode {
     virtual void handleBtn2Pressed() { }
     virtual void onEnter() { }
     virtual void onExit() { }
+    virtual void onTick() { }
 
     const char* name;
     uint8_t type;
@@ -82,9 +83,13 @@ class MenuMode : public Mode {
 
 class PowerModulationMode : public Mode {
   public:
-    PowerModulationMode(uint8_t type, const char* name) : Mode(type, name) { }
+    PowerModulationMode(uint8_t type, const char* name) : Mode(type, name), sec(0), clockDisplay(55, 7) {}
     virtual ~PowerModulationMode() { }
     virtual void onEnter();
+    virtual void onTick();
+  private:
+    uint16_t sec;
+    MonoGfx clockDisplay;
 };
 
 Mode* cmode = 0;
@@ -102,40 +107,50 @@ void print_menu();
 void log(const char *format, ...);
 
 void btn_pressed_1() {
-  queue.call(&menuMode, &MenuMode::handleBtn1Pressed);
+  eventQueue.call(&menuMode, &MenuMode::handleBtn1Pressed);
 }
 void btn_pressed_2() {
-  queue.call(&menuMode, &MenuMode::handleBtn2Pressed);
+  eventQueue.call(&menuMode, &MenuMode::handleBtn2Pressed);
 }
 
 void exited(Mode& mode);
 void entering(Mode& mode);
 void moveTo(uint8_t newState);
 
-// Entry point
-int main (void) {
-  log("[INFO] MrPlate is initializing\n");
+void initComponents() {
   i2c.frequency(400000 /* Hz */);
   i2c.start();
   display.init();
   btn1_in.mode(PullNone);
-  btn1.fall(queue.event(btn_pressed_1));
+  btn1.fall(eventQueue.event(btn_pressed_1));
   btn2_in.mode(PullNone);
-  btn2.fall(queue.event(btn_pressed_2));
+  btn2.fall(eventQueue.event(btn_pressed_2));
+}
+
+void tick() {
+  if (cmode)
+    cmode->onTick();
+}
+
+// Entry point
+int main (void) {
+
+  log("[INFO] MrPlate is initializing\n");
+  initComponents();
+
   // Start Threads
+  log("[INFO] Threads are starting\n");
   com_thread.start(com_menu);
-  eventThread.start(callback(&queue, &EventQueue::dispatch_forever));
+  eventQueue.call_every(5000, tick);
 
   // Initial Text
   log("[INFO] Printing Welcome Text\n");
   print_welcome();
   Thread::wait(2000);
+  eventQueue.call(moveTo, kMenuState);
 
-  queue.call(moveTo, kMenuState);
-
-  while (true) {
-    Thread::wait(500);
-  }
+  log("[INFO]<ONLINE> Event Queue\n");
+  eventQueue.dispatch_forever();
 }
 
 void MenuMode::handleBtn1Pressed() {
@@ -149,7 +164,7 @@ void MenuMode::handleBtn1Pressed() {
 }
 
 void MenuMode::handleBtn2Pressed() {
-  queue.call(moveTo, mode == kPowerModulation ? kPowerModulationState : kAdvancedModeState);
+  eventQueue.call(moveTo, mode == kPowerModulation ? kPowerModulationState : kAdvancedModeState);
 }
 
 void MenuMode::onEnter() {
@@ -169,14 +184,13 @@ void MenuMode::onEnter() {
 }
 
 void PowerModulationMode::onEnter() {
-  time_t now = time(0);   // get time now
-  struct tm* t = localtime(&now);
+  sec = 0;
   MonoGfx menu(kWidth, kHeight);
   menu.fillRect(0, 0, kWidth, kHeight, kBlack);
 
   menu.setTextSize(1);
   menu.setTextCursor(0, 0);
-  menu.printf("%d:%01d:%01d", t->tm_hour, t->tm_min, t->tm_sec);
+  menu.printf("0:00:00");
 
   // Power Sign
   menu.setTextSize(1);
@@ -191,6 +205,15 @@ void PowerModulationMode::onEnter() {
   menu.printf("%3d.%02d%%\n", top, displayp - (top * 100));
 
   display.draw(0, 0, menu.image());
+}
+
+void PowerModulationMode::onTick() {
+  sec += 5;
+  clockDisplay.fillRect(0, 0, 55, 7, kBlack);
+  clockDisplay.setTextSize(1);
+  clockDisplay.setTextCursor(0, 0);
+  clockDisplay.printf("%u:%02u:%02u", sec / 3600 % 60, sec / 60 % 60, sec % 60);
+  display.draw(0, 0, clockDisplay.image());
 }
 
 void exited(Mode& mode) {
@@ -243,6 +266,7 @@ void com_clear() {
 }
 /** Serial Communication Menu */
 void com_menu() {
+  log("[INFO]<ONLINE> Communication\n");
   char buffer[kComBufferLength];
   while(com.scanf("%79s", buffer) == 1) {
     if (strcmp(buffer, "logs") == 0) com_logs();
