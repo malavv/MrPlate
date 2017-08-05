@@ -83,13 +83,24 @@ class MenuMode : public Mode {
 
 class PowerModulationMode : public Mode {
   public:
-    PowerModulationMode(uint8_t type, const char* name) : Mode(type, name), sec(0), clockDisplay(55, 7) {}
+    PowerModulationMode(uint8_t type, const char* name)
+      : Mode(type, name), sec(0), _powerPer10000(0), clockDisplay(55, 7) {}
     virtual ~PowerModulationMode() { }
+    virtual void handleBtn1Pressed();
+    virtual void handleBtn2Pressed();
+
     virtual void onEnter();
     virtual void onTick();
+
   private:
     uint16_t sec;
+    uint16_t _powerPer10000;
     MonoGfx clockDisplay;
+
+    const uint16_t deltaPower = 10001 / 40;
+
+    void _printPower();
+    void _setPower(uint16_t powerPer10000);
 };
 
 Mode* cmode = 0;
@@ -106,12 +117,9 @@ void print_menu();
 
 void log(const char *format, ...);
 
-void btn_pressed_1() {
-  eventQueue.call(&menuMode, &MenuMode::handleBtn1Pressed);
-}
-void btn_pressed_2() {
-  eventQueue.call(&menuMode, &MenuMode::handleBtn2Pressed);
-}
+void btn_pressed_1() { if (cmode) cmode->handleBtn1Pressed(); }
+void btn_pressed_2() { if (cmode) cmode->handleBtn2Pressed(); }
+void tick() { if (cmode) cmode->onTick(); }
 
 void exited(Mode& mode);
 void entering(Mode& mode);
@@ -125,11 +133,7 @@ void initComponents() {
   btn1.fall(eventQueue.event(btn_pressed_1));
   btn2_in.mode(PullNone);
   btn2.fall(eventQueue.event(btn_pressed_2));
-}
-
-void tick() {
-  if (cmode)
-    cmode->onTick();
+  eventQueue.call_every(5000, tick);
 }
 
 // Entry point
@@ -141,7 +145,6 @@ int main (void) {
   // Start Threads
   log("[INFO] Threads are starting\n");
   com_thread.start(com_menu);
-  eventQueue.call_every(5000, tick);
 
   // Initial Text
   log("[INFO] Printing Welcome Text\n");
@@ -162,11 +165,9 @@ void MenuMode::handleBtn1Pressed() {
   display.draw(0, kHeight - 2, selection.image());
   log("[INFO] Menu is changing selection\n");
 }
-
 void MenuMode::handleBtn2Pressed() {
   eventQueue.call(moveTo, mode == kPowerModulation ? kPowerModulationState : kAdvancedModeState);
 }
-
 void MenuMode::onEnter() {
   MonoGfx menu(kWidth, kHeight);
   menu.fillRect(0, 0, kWidth, kHeight, kBlack);
@@ -182,7 +183,6 @@ void MenuMode::onEnter() {
   menu.drawFastHLine(0, kHeight - 2, (kWidth / 2) - 10, kWhite);
   display.draw(0, 0, menu.image());
 }
-
 void PowerModulationMode::onEnter() {
   sec = 0;
   MonoGfx menu(kWidth, kHeight);
@@ -200,13 +200,10 @@ void PowerModulationMode::onEnter() {
   // Power Level
   menu.setTextSize(2);
   menu.setTextCursor(5, kHeight / 2);
-  uint32_t displayp = ((float)5 / (float)100) * 10000;
-  uint32_t top = displayp / 100;
-  menu.printf("%3d.%02d%%\n", top, displayp - (top * 100));
+  menu.printf("%3u.%02u%%\n", _powerPer10000 / 100, _powerPer10000 % 100);
 
   display.draw(0, 0, menu.image());
 }
-
 void PowerModulationMode::onTick() {
   sec += 5;
   clockDisplay.fillRect(0, 0, 55, 7, kBlack);
@@ -214,6 +211,27 @@ void PowerModulationMode::onTick() {
   clockDisplay.setTextCursor(0, 0);
   clockDisplay.printf("%u:%02u:%02u", sec / 3600 % 60, sec / 60 % 60, sec % 60);
   display.draw(0, 0, clockDisplay.image());
+}
+void PowerModulationMode::handleBtn1Pressed() {
+  _setPower(_powerPer10000 + deltaPower > 10000 ? 10000 : _powerPer10000 + deltaPower);
+}
+void PowerModulationMode::handleBtn2Pressed() {
+  _setPower(_powerPer10000 < deltaPower ? 0 : _powerPer10000 - deltaPower);
+}
+void PowerModulationMode::_printPower() {
+  MonoGfx menu(kWidth, kHeight / 2);
+
+  menu.fillRect(0, 0, kWidth, kHeight / 2, kBlack);
+  menu.setTextSize(2);
+  menu.setTextCursor(5, 0);
+
+  menu.printf("%3u.%02u%%\n", _powerPer10000 / 100, _powerPer10000 % 100);
+
+  display.draw(0, kHeight / 2, menu.image());
+}
+void PowerModulationMode::_setPower(uint16_t powerPer10000) {
+  _powerPer10000 = powerPer10000;
+  _printPower();
 }
 
 void exited(Mode& mode) {
