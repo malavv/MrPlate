@@ -145,7 +145,6 @@ void MenuMode::handleBtn1Pressed() {
   selection.fillRect(0, 0, kWidth, 1, kBlack);
   selection.drawFastHLine(mode == kPowerModulation ? 0 : kWidth / 2, 0, (kWidth / 2) - 10, kWhite);
   display.draw(0, kHeight - 2, selection.image());
-  display.draw(0, kHeight - 2, selection.image());
   log("[INFO] Menu is changing selection\n");
 }
 
@@ -166,7 +165,6 @@ void MenuMode::onEnter() {
 
   // Print Initial Choice
   menu.drawFastHLine(0, kHeight - 2, (kWidth / 2) - 10, kWhite);
-  display.draw(0, 0, menu.image());
   display.draw(0, 0, menu.image());
 }
 
@@ -192,7 +190,6 @@ void PowerModulationMode::onEnter() {
   uint32_t top = displayp / 100;
   menu.printf("%3d.%02d%%\n", top, displayp - (top * 100));
 
-  display.draw(0, 0, menu.image());
   display.draw(0, 0, menu.image());
 }
 

@@ -110,15 +110,23 @@ void Adafruit_SSD1306::_draw(int16_t x, int16_t y, ImageMono& image) {
 }
 
 void Adafruit_SSD1306::_i2c_send() {
-  // Write Data to Buffer;
-  cmd(SSD1306_SETLOWCOLUMN | 0x0 /* Low Column Start Address  0 */);
-  cmd(SSD1306_SETHIGHCOLUMN | 0x0 /* High Column at 0 */);
-  cmd(SSD1306_SETSTARTLINE | 0x0 /* Start line at 0 */);
+  #define SSD1306_COLUMNADDR 0x21
+  #define SSD1306_LCDWIDTH   128
+  #define SSD1306_PAGEADDR   0x22
+
+  // Column Address
+  cmd(SSD1306_COLUMNADDR);
+  cmd(0);   // Column start address (0 = reset)
+  cmd(SSD1306_LCDWIDTH - 1); // Column end address (127 = reset)
+  // Page Address
+  cmd(SSD1306_PAGEADDR);
+  cmd(0); // Page start address (0 = reset)
+  cmd(_image.height == 32 ? 3 : 7); // Page end address
 
   char buff1[17];
   buff1[0] = 0x40;
 
-  for (int t = 0; t < 4; t++) { /* Per Page Row */
+  for (int t = 0; t < 4; t++) { /* Per Page (ie. 2 rows) */
     for (int tx = 0; tx < SSD1306_WIDTH; tx++) { /* The Whole Line */
       for (int ty = 0; ty < 8; ty++) { /* 8 pix deep from top to bottom */
         if (_image.at(tx, ty + t * 8) == kWhite)
