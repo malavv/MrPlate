@@ -7,6 +7,7 @@ enum ButtonAction : uint8_t { PRESSED = 0, RELEASED = 1 };
 
 struct ButtonEvent : public Event {
 public:
+  ButtonEvent();
   ButtonEvent(uint8_t pin, ButtonAction action);
   const uint8_t pin;
   const ButtonAction action;
@@ -25,6 +26,7 @@ public:
   // Time used for debouncing, in MS since program start.
   volatile uint32_t ignoreUntil;
 
+  ButtonDriver();
   ButtonDriver(uint8_t pinNumber);
   ~ButtonDriver();
 

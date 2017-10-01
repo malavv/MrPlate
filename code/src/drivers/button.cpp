@@ -3,9 +3,12 @@
 #include "Arduino.h"
 #include "board.h"
 
+
 ButtonEvent::ButtonEvent(uint8_t pin, ButtonAction action)
   : Event(EventType::kBtn), pin(pin), action(action) {}
 
+  ButtonDriver::ButtonDriver()
+  : pin(0), ignoreUntil(0), _isPressed(false), _whenPressed(0) {}
 ButtonDriver::ButtonDriver(uint8_t pinNumber)
   : pin(pinNumber), ignoreUntil(0), _isPressed(false), _whenPressed(0) {}
 ButtonDriver::~ButtonDriver() {}

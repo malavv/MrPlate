@@ -6,6 +6,7 @@
 
 #include "board.h"
 #include "drivers/button.h"
+#include "drivers/buttons.h"
 #include "drivers/pwm.h"
 #include "drivers/digitalOut.h"
 
@@ -17,9 +18,11 @@
 // Display Driver
 Adafruit_SSD1306 Display(Pin::kDisplayRst);
 // Control Button
-ButtonDriver btn1(Pin::kBtn1);
-ButtonDriver btn2(Pin::kBtn2);
+Button btn1(Pin::kBtn1);
+Button btn2(Pin::kBtn2);
+ButtonsDriver buttons(2 /** Number of Buttons */);
 
+// Lights
 DigitalOut debugLed(Pin::kDebugLed);
 
 // PWM Management
@@ -61,8 +64,8 @@ void setup() {
   debugLed = kIsDebug;
 
   // Register Buttons on the Event Bus.
-  btn1.registerInterrupt([]{ btn1.onChange(bus); }, CHANGE);
-  btn2.registerInterrupt([]{ btn2.onChange(bus); }, CHANGE);
+  btn1 = buttons.bind(Pin::kBtn1);
+  btn2 = buttons.bind(Pin::kBtn2);
 
   // Initialize Display
   Display.begin(SSD1306_SWITCHCAPVCC, SSD1306_I2C_ADDRESS, true /* reset */);
@@ -84,6 +87,11 @@ void loop() {
     // Chance to Process Event of Global Importance Event
     if (evt->type == EventType::kStateChange)
       changeStateByID(std::static_pointer_cast<const StateChangeEvent>(evt)->state); 
+    //if (evt->type == EventType::kBtn) {
+//      auto event = std::static_pointer_cast<const ButtonsEvent>(evt);
+      //Serial.printf("[INFO] ButtonsEvent %u %s\n", event->pin_, event->isOn_ ? "true" : "false");
+    //}
+      
   }
 
   // Then Loop the current state with any given event.

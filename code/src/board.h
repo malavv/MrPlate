@@ -37,7 +37,8 @@ const char * const StateTypeNames[] = {
 enum EventType : uint8_t {
     kBtn,
     kStateChange,
-    kPwmCmd
+    kPwmCmd,
+    kTest
 };
 
 #endif // BOARD_H_
