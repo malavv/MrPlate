@@ -7,6 +7,7 @@
 #include "board.h"
 #include "drivers/button.h"
 #include "drivers/pwm.h"
+#include "drivers/digitalOut.h"
 
 #include "states/mainMenuState.h"
 #include "states/simpleState.h"
@@ -18,6 +19,9 @@ Adafruit_SSD1306 Display(Pin::kDisplayRst);
 // Control Button
 ButtonDriver btn1(Pin::kBtn1);
 ButtonDriver btn2(Pin::kBtn2);
+
+DigitalOut debugLed(Pin::kDebugLed);
+
 // PWM Management
 PwmDriver pwm(Pin::kPwm);
 // App. main Event Bus
@@ -33,26 +37,28 @@ State* states[StateType::NUMBER_OF_STATE_TYPES] = {
   new AdvancedState(bus)
 };
 
-void setState(State* newState) {
-  if (currentState != nil)  currentState->onLeaving();
-  currentState = newState;
-  if (currentState != nil)  currentState->onEntering();
-}
-
 void initSerialCommunication(uint8_t timeToWaitIn100Ms) {
   Serial.begin(9600 /* Serial Speed in Baud */);
   /* Wait for serial port to connect. Needed for native USB */
   for (uint8_t i = 0; !Serial && i < timeToWaitIn100Ms; i++) delay(100/* ms */);
 }
 
+void changeStateByID(const StateType state) {
+  if (currentState != nil)  
+    currentState->onLeaving();
+  currentState = states[state];
+  if (currentState != nil)  
+    currentState->onEntering();
+}
+
 void setup() {
+  debugLed.setup();
 
   // Sets uC Pins
   pinMode(Pin::kPwm, OUTPUT);
-  pinMode(Pin::kDebugLed, OUTPUT);
 
   // Running Light is First Step to Help Debugging
-  digitalWrite(Pin::kDebugLed, kIsDebug);
+  debugLed = kIsDebug;
 
   // Register Buttons on the Event Bus.
   btn1.registerInterrupt([]{ btn1.onChange(bus); }, CHANGE);
@@ -66,17 +72,7 @@ void setup() {
   initSerialCommunication(30 /* timeToWaitIn100Ms */);
 
   Serial.println("[INFO] Moving to Welcome State");
-  setState(states[StateType::Welcome]);
-}
-
-void processGlobalEvent(std::shared_ptr<const Event>& event) {
-  switch (event->type) {
-    case EventType::kStateChange: {
-      setState(states[std::static_pointer_cast<const StateChangeEvent>(event)->state]);
-      break;
-    }
-    default: return;
-  }
+  changeStateByID(StateType::Welcome);
 }
 
 void loop() {
@@ -84,9 +80,11 @@ void loop() {
 
   std::shared_ptr<const Event> evt = bus.next();
 
-  // If Global Event
-  if (evt != nil)
-    processGlobalEvent(evt);
+  if (evt != nil) {
+    // Chance to Process Event of Global Importance Event
+    if (evt->type == EventType::kStateChange)
+      changeStateByID(std::static_pointer_cast<const StateChangeEvent>(evt)->state); 
+  }
 
   // Then Loop the current state with any given event.
   currentState->loop(evt);
