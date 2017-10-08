@@ -4,13 +4,13 @@
 
 #include <algorithm>
 #include "board.h"
-#include "drivers/button.h"
+#include "button/driver.h"
 #include "drivers/pwm.h"
 
 extern Adafruit_SSD1306 Display;
 extern PwmDriver pwm;
-extern ButtonDriver btn1;
-extern ButtonDriver btn2;
+extern Button btn1;
+extern Button btn2;
 
 SimpleState::SimpleState(EventBus& bus) : State(StateType::Simple, bus) {}
 SimpleState::~SimpleState() {}

@@ -3,7 +3,7 @@
 
 #include "state.h"
 #include "bus.h"
-#include "../drivers/button.h"
+#include "../button/driver.h"
 
 class MainMenuState : public State {
 

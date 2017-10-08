@@ -2,7 +2,7 @@
 
 #include <Adafruit_SSD1306.h>
 
-#include "../drivers/button.h"
+#include "../button/driver.h"
 
 extern Adafruit_SSD1306 Display;
 

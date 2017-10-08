@@ -13,7 +13,7 @@ public:
   const ButtonAction action;
 };
 
-class ButtonDriver {
+class ButtonDriverOld {
 
 public:
   // Button Pin Number
@@ -26,9 +26,9 @@ public:
   // Time used for debouncing, in MS since program start.
   volatile uint32_t ignoreUntil;
 
-  ButtonDriver();
-  ButtonDriver(uint8_t pinNumber);
-  ~ButtonDriver();
+  ButtonDriverOld();
+  ButtonDriverOld(uint8_t pinNumber);
+  ~ButtonDriverOld();
 
   bool isPressed() const;
   uint16_t heldForMs() const;

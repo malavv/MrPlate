@@ -7,18 +7,18 @@
 ButtonEvent::ButtonEvent(uint8_t pin, ButtonAction action)
   : Event(EventType::kBtn), pin(pin), action(action) {}
 
-  ButtonDriver::ButtonDriver()
+  ButtonDriverOld::ButtonDriverOld()
   : pin(0), ignoreUntil(0), _isPressed(false), _whenPressed(0) {}
-ButtonDriver::ButtonDriver(uint8_t pinNumber)
+  ButtonDriverOld::ButtonDriverOld(uint8_t pinNumber)
   : pin(pinNumber), ignoreUntil(0), _isPressed(false), _whenPressed(0) {}
-ButtonDriver::~ButtonDriver() {}
+  ButtonDriverOld::~ButtonDriverOld() {}
 
-void ButtonDriver::registerInterrupt(void (*interrupt)(), const uint8_t state) {
+void ButtonDriverOld::registerInterrupt(void (*interrupt)(), const uint8_t state) {
   pinMode(pin, INPUT);
   attachInterrupt(pin, interrupt, state);
 }
 
-void ButtonDriver::onChange(EventBus& bus) {
+void ButtonDriverOld::onChange(EventBus& bus) {
   const uint32_t currentTimeMs = millis();
   if (currentTimeMs < ignoreUntil)
     return;
@@ -33,10 +33,10 @@ void ButtonDriver::onChange(EventBus& bus) {
   bus.post(new ButtonEvent(pin, action));
 }
 
-uint16_t ButtonDriver::heldForMs() const {
+uint16_t ButtonDriverOld::heldForMs() const {
   return _isPressed ? millis() - _whenPressed : 0;
 }
 
-bool ButtonDriver::isPressed() const {
+bool ButtonDriverOld::isPressed() const {
   return _isPressed;
 }

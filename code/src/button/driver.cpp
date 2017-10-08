@@ -1,14 +1,13 @@
-#include "buttons.h"
+#include "driver.h"
 
 #include <Arduino.h>
 
-extern EventBus bus;
+uint8_t ButtonDriver::numButtons_;
+int8_t* ButtonDriver::pinEnabled_;
+bool* ButtonDriver::pinValues_;
+bool ButtonDriver::isDirty_ = false;
 
-uint8_t ButtonsDriver::numButtons_;
-int8_t* ButtonsDriver::pinEnabled_;
-bool* ButtonsDriver::pinValues_;
-
-ButtonsDriver::ButtonsDriver(uint8_t numButtons) {
+ButtonDriver::ButtonDriver(uint8_t numButtons) {
   numButtons_ = numButtons;
   pinEnabled_ = new int8_t[numButtons_];
   pinValues_ = new bool[numButtons_]();
@@ -16,7 +15,7 @@ ButtonsDriver::ButtonsDriver(uint8_t numButtons) {
     pinEnabled_[i] = -1; 
 }
 
-bool ButtonsDriver::registerPinForUse(uint8_t pin) {
+bool ButtonDriver::registerPinForUse(uint8_t pin) {
   for (uint8_t i = 0; i < numButtons_; i++) {
     if (pinEnabled_[i] != -1) 
       continue;
@@ -27,7 +26,7 @@ bool ButtonsDriver::registerPinForUse(uint8_t pin) {
   return true;
 }
 
-Button ButtonsDriver::bind(uint8_t pin) {
+Button ButtonDriver::bind(uint8_t pin) {
 
   registerPinForUse(pin);
 
@@ -43,7 +42,7 @@ Button ButtonsDriver::bind(uint8_t pin) {
         continue;
       
       pinValues_[i] = current;
-      bus.post(new ButtonsEvent(pinNumber, current)); 
+      isDirty_ = true;
     }
   };
   
@@ -53,10 +52,26 @@ Button ButtonsDriver::bind(uint8_t pin) {
   return button;
 }
 
+void ButtonDriver::update() {
+  if (isDirty_)
+    Serial.println("foobar\n");
+}
+
+Button::Button(uint8_t pin) : pin_(pin) {}
+
+Button::~Button() {}
+
 bool Button::isPressed() {
-  for (uint8_t i = 0; i < ButtonsDriver::numButtons_; i++) {
-    if (ButtonsDriver::pinEnabled_[i] == pin_)
-      return ButtonsDriver::pinValues_[i];
+  for (uint8_t i = 0; i < ButtonDriver::numButtons_; i++) {
+    if (ButtonDriver::pinEnabled_[i] == pin_)
+      return ButtonDriver::pinValues_[i];
   }
   return false;
+}
+
+int8_t Button::onPressed(std::function<void (void)> callback) {
+  return 0;
+}
+int8_t Button::onReleased(std::function<void (void)> callback) {
+  return 0;
 }
