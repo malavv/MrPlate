@@ -35,7 +35,7 @@ InterruptIn btn1(D14);
 DigitalIn btn1_in(D14);
 InterruptIn btn2(D15);
 DigitalIn btn2_in(D15);
-PwmOut pwm(D10);
+//PwmOut pwm(D10);
 
 char logBuffer[1000];
 uint16_t logCursor = 0;
