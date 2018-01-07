@@ -187,7 +187,7 @@ void MenuMode::onEnter() {
 }
 void PowerModulationMode::onExit() {
   _powerPer10000 = 0;
-  pwm.write(0);
+  //pwm.write(0);
 }
 void PowerModulationMode::onEnter() {
   sec = 0;
@@ -237,7 +237,7 @@ void PowerModulationMode::_printPower() {
 }
 void PowerModulationMode::_setPower(uint16_t powerPer10000) {
   _powerPer10000 = powerPer10000;
-  pwm.write((float)_powerPer10000 / 10000);
+  //pwm.write((float)_powerPer10000 / 10000);
   _printPower();
 }
 
