@@ -2,76 +2,70 @@
 
 #include <Arduino.h>
 
-uint8_t ButtonDriver::numButtons_;
-int8_t* ButtonDriver::pinEnabled_;
-bool* ButtonDriver::pinValues_;
-bool ButtonDriver::isDirty_ = false;
+extern EventBus bus;
 
-ButtonDriver::ButtonDriver(uint8_t numButtons) {
-  numButtons_ = numButtons;
-  pinEnabled_ = new int8_t[numButtons_];
-  pinValues_ = new bool[numButtons_]();
-  for (uint8_t i = 0; i < numButtons; i++) 
-    pinEnabled_[i] = -1; 
-}
+void ButtonDriver::onAnyBtnTrigger() {
+  for (ButtonData* dat : buttonsData_) {
+    bool last = dat->isPressed;
+    bool current = digitalRead(dat->pin);
 
-bool ButtonDriver::registerPinForUse(uint8_t pin) {
-  for (uint8_t i = 0; i < numButtons_; i++) {
-    if (pinEnabled_[i] != -1) 
-      continue;
-    pinEnabled_[i] = pin;
-    pinValues_[i] = false;
-    return false;
+    dat->isPressed = current;
+    dat->isDirty = last != current;
   }
-  return true;
 }
 
-Button ButtonDriver::bind(uint8_t pin) {
-
-  registerPinForUse(pin);
-
-  auto onAnyChanged = []() {
-    for (uint8_t i = 0; i < numButtons_; i++) {
-      auto pinNumber = pinEnabled_[i];
-      if (pinNumber == -1)  
-        continue;
-
-      auto current = digitalRead(pinNumber);
-      auto last = pinValues_[i];
-      if (current == last)
-        continue;
-      
-      pinValues_[i] = current;
-      isDirty_ = true;
-    }
-  };
-  
-  attachInterrupt(digitalPinToInterrupt(pin), onAnyChanged, CHANGE);
-
-  Button button(pin);
-  return button;
+ButtonData* ButtonDriver::addBtnData(const uint8_t pin) {
+  ButtonData* dat = new ButtonData(pin);
+  buttonsData_.push_back(dat);
+  return dat;
 }
 
-void ButtonDriver::update() {
-  if (isDirty_)
-    Serial.println("foobar\n");
+ButtonData* ButtonDriver::bind(const uint8_t pin) {
+
+  ButtonData* dat = getBtnById(pin);
+  if (dat != 0)
+    return dat;
+
+  // Register any of its trigger to our class.
+  attachInterrupt(
+    digitalPinToInterrupt(pin),
+    []() { ButtonDriver::getInstance().onAnyBtnTrigger(); },
+    CHANGE);
+
+  // Reserve some memory for the button
+  return ButtonDriver::getInstance().addBtnData(pin);
 }
 
-Button::Button(uint8_t pin) : pin_(pin) {}
+ButtonData* ButtonDriver::getBtnById(uint8_t pin) const {
+  for (ButtonData* dat : buttonsData_) {
+    if (dat->pin == pin)
+      return dat;
+  }
+  return 0;
+}
 
-Button::~Button() {}
+void ButtonDriver::broadcast(const bool isPressed, const uint8_t pin) {
+  bus.post(new ButtonEvent(pin, isPressed ? PRESSED : RELEASED));
+}
 
-bool Button::isPressed() {
-  for (uint8_t i = 0; i < ButtonDriver::numButtons_; i++) {
-    if (ButtonDriver::pinEnabled_[i] == pin_)
-      return ButtonDriver::pinValues_[i];
+bool ButtonDriver::isDirty() const {
+  for (ButtonData* dat : buttonsData_) {
+    if (dat->isDirty)
+      return true;
   }
   return false;
 }
 
-int8_t Button::onPressed(std::function<void (void)> callback) {
-  return 0;
+void ButtonDriver::update() {
+  if (!isDirty())
+    return;
+
+  for (ButtonData* dat : buttonsData_) {
+    if (!dat->isDirty)
+      continue;
+    dat->isDirty = false;
+    broadcast(dat->isPressed, dat->pin);
+  }
 }
-int8_t Button::onReleased(std::function<void (void)> callback) {
-  return 0;
-}
+
+Button::Button(uint8_t pin) { data_ = ButtonDriver::getInstance().bind(pin); }

@@ -23,14 +23,17 @@ private:
   uint32_t duty;
   uint32_t maxDuty;
 
-    const uint16_t minPowerLvl = 0, maxPowerLvl = 2048, numDigits = 11;
+  const uint16_t minPowerLvl = 0, maxPowerLvl = 2048, numDigits = 11;
 
-    void printDigits(int digits);
-    void digitalClockDisplay();
-    void handleButton(const std::shared_ptr<const ButtonEvent>& evt);
+  void printDigits(int digits);
+  void digitalClockDisplay();
+  void handleButton(const std::shared_ptr<const ButtonEvent>& evt);
 
-    void inc(uint16_t deltaPower);
-    void dec(uint16_t deltaPower);
+  void inc(uint16_t deltaPower);
+  void dec(uint16_t deltaPower);
+
+  Button btn1;
+  Button btn2;
 };
 
 #endif // SIMPLE_STATE_H

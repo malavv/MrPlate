@@ -16,11 +16,6 @@
 
 // Display Driver
 Adafruit_SSD1306 Display(Pin::kDisplayRst);
-// Control Button
-Button btn1(Pin::kBtn1);
-Button btn2(Pin::kBtn2);
-ButtonDriver buttons(2 /** Number of Buttons */);
-
 // Lights
 DigitalOut debugLed(Pin::kDebugLed);
 
@@ -46,10 +41,10 @@ void initSerialCommunication(uint8_t timeToWaitIn100Ms) {
 }
 
 void changeStateByID(const StateType state) {
-  if (currentState != nil)  
+  if (currentState != nil)
     currentState->onLeaving();
   currentState = states[state];
-  if (currentState != nil)  
+  if (currentState != nil)
     currentState->onEntering();
 }
 
@@ -63,11 +58,8 @@ void setup() {
   debugLed = kIsDebug;
 
   // Register Buttons on the Event Bus.
-  btn1 = buttons.bind(Pin::kBtn1);
-  btn2 = buttons.bind(Pin::kBtn2);
-
-  btn1.onPressed([&]() { bus.post(new ButtonEvent(Pin::kBtn1, PRESSED)); });
-  btn1.onReleased([&]() { bus.post(new ButtonEvent(Pin::kBtn1, RELEASED)); });
+  Button btn1(Pin::kBtn1);
+  Button btn2(Pin::kBtn2);
 
   // Initialize Display
   Display.begin(SSD1306_SWITCHCAPVCC, SSD1306_I2C_ADDRESS, true /* reset */);
@@ -76,18 +68,19 @@ void setup() {
 
   initSerialCommunication(30 /* timeToWaitIn100Ms */);
 
+  delay(1500);
   Serial.println("[INFO] Moving to Welcome State");
   changeStateByID(StateType::Welcome);
 }
 
 void loop() {
   delay(loopDelayMs);
-  buttons.update();
+  ButtonDriver::getInstance().update();
 
   std::shared_ptr<const Event> evt = bus.next();
 
   if (evt != nil && evt->type == EventType::kStateChange)
-    changeStateByID(std::static_pointer_cast<const StateChangeEvent>(evt)->state); 
+    changeStateByID(std::static_pointer_cast<const StateChangeEvent>(evt)->state);
 
   currentState->loop(evt);
 }

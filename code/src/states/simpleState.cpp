@@ -9,10 +9,10 @@
 
 extern Adafruit_SSD1306 Display;
 extern PwmDriver pwm;
-extern Button btn1;
-extern Button btn2;
 
-SimpleState::SimpleState(EventBus& bus) : State(StateType::Simple, bus) {}
+SimpleState::SimpleState(EventBus& bus)
+  : State(StateType::Simple, bus), btn1(Pin::kBtn1), btn2(Pin::kBtn2) {}
+
 SimpleState::~SimpleState() {}
 
 void SimpleState::onEntering() {
