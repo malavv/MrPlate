@@ -1,0 +1,23 @@
+cmake_minimum_required(VERSION 2.6)
+project(MrEmulator)
+
+# Use our modified FindSDL2* modules
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${MrEmulator_SOURCE_DIR}/cmake")
+set(BIN_DIR ${MrEmulator_SOURCE_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
+set(SDL2 "D:/libs/sdl/vs/SDL2-2.0.7")
+
+find_package(SDL2 REQUIRED)
+find_package(SDL2_image REQUIRED)
+
+include_directories(${SDL2_INCLUDE_DIR})
+include_directories(${SDL2_IMAGE_INCLUDE_DIR})
+include_directories(include)
+include_directories("${MrEmulator_SOURCE_DIR}/lib/Adafruit_SSD1306")
+include_directories("${MrEmulator_SOURCE_DIR}/lib/Adafruit-GFX-Library")
+include_directories("${MrEmulator_SOURCE_DIR}/emulator")
+
+add_executable(MrEmulator src/emulator/emulator.cpp src/example.cpp lib/Adafruit_SSD1306/Adafruit_SSD1306.cpp lib/Adafruit-GFX-Library/Adafruit_GFX.cpp src/emulator/ui.cpp)
+target_link_libraries(MrEmulator ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY})
+install(TARGETS MrEmulator RUNTIME DESTINATION ${BIN_DIR})
