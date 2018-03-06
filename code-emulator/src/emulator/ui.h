@@ -40,8 +40,8 @@ private:
 		_ui = { 0, 0, 592, 148 };
 		_lcd = { 10, 10, 512, 128 };
 		_ssd1306 = { 0, 0, 128, 32 };
-		_btn1 = { 537, 85, 40, 40 };
-		_btn2 = { 534, 20, 45, 45 };
+		_backBtn = { 537, 85, 40, 40 };
+		_wheelBtn = { 534, 20, 45, 45 };
 
 		nBytes = (_ssd1306.h * _ssd1306.w) / 8;
 		_writeBuffer = new uint8_t[nBytes];
@@ -56,7 +56,7 @@ private:
 	}
 
 	void drawPolygon(SDL_Renderer * ren, int cx, int cy, int nSides, float radius);
-	void drawControls(SDL_Renderer * ren, int left, int top, int right, int bottom, float rad, bool isPressed);
+	void drawControls(SDL_Renderer * ren, int left, int top, int right, int bottom, float rad);
 	void logError(std::ostream &os, const std::string &msg);
 	void redraw();
 
@@ -74,7 +74,8 @@ private:
 	std::atomic<bool> _isInverted;
 
 	float rad = 0;
-	bool isPressed = false;
+	bool isWheelPressed = false;
+	bool isBackPressed = false;
 
 	size_t screenWidth;
 	size_t screenHeight;
@@ -82,7 +83,7 @@ private:
 
 	SDL_Rect _ui, _lcd, _ssd1306, _pix;
 
-	SDL_Rect _btn1, _btn2;
+	SDL_Rect _backBtn, _wheelBtn;
 };
 
 #endif // _UI_H_

@@ -16,6 +16,7 @@ All text above, and the splash screen must be included in any redistribution
 #include <Arduino.h>
 
 #include "Adafruit_SSD1306.h"
+#include <iostream>
 
 #define OLED_RESET 4
 Adafruit_SSD1306 display(OLED_RESET);
@@ -59,6 +60,18 @@ void testdrawroundrect(void);
 void testfillroundrect(void);
 void testdrawrect(void);
 void testdrawline();
+
+void onBackButtonReleased() {
+	std::cout << "back button released" << std::endl;
+}
+
+void onWheelReleased() {
+	std::cout << "wheel released" << std::endl;
+}
+
+void onWheelScrolled(int8_t delta /* + or - */) {
+	std::cout << "wheel scroll " << (int)delta << std::endl;
+}
 
 void setup() {
 

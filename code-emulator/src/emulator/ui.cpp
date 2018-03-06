@@ -6,6 +6,10 @@
 #include <SDL_image.h>
 #include <atomic>
 
+void onBackButtonReleased();
+void onWheelReleased();
+void onWheelScrolled(int8_t/* +1 or -1 */);
+
 int UI::setup() {
 	// Start up SDL and make sure it went ok
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
@@ -38,7 +42,7 @@ void UI::redraw() {
 	SDL_RenderClear(renderer);
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 	SDL_RenderDrawRect(renderer, &_lcd);
-	drawControls(renderer, 532, 10, 10, 10, rad, isPressed);
+	drawControls(renderer, 532, 10, 10, 10, rad);
 	
 	{
 		std::lock_guard<std::mutex> guard(getMutex());
@@ -85,29 +89,33 @@ int UI::evtloop() {
 					rad = rad + ((float)M_PI / 10);
 				}
 				redraw();
+				onWheelScrolled(e.wheel.y);
 			}
 			// If user clicks the mouse
 			if (e.type == SDL_MOUSEBUTTONDOWN) {
 
-				int x, y;
-				SDL_GetMouseState(&x, &y);
+				SDL_Point mouse;
+				SDL_GetMouseState(&mouse.x, &mouse.y);
 
-				int w = width - 532 - 10;
-				int h = height- 10 - 10;
-				int cx = (int)round(532 + w / 2.0);
-				int cy = (int)round(10 + h / 4.0);
-				float radius = 25.0;
-				int btnWidth = 40;
-				SDL_Rect rct = { cx - btnWidth / 2, (int)round(10 + 3 * (h / 4.0)) - btnWidth / 2, btnWidth, btnWidth };
-
-				if (x >= rct.x && x <= rct.x + rct.w
-					&& y >= rct.y && y <= rct.y + rct.h) {
-					isPressed = true;
+				if (SDL_PointInRect(&mouse, &_backBtn)) {
+					isBackPressed = true;
+					redraw();
+				}
+				if (SDL_PointInRect(&mouse, &_wheelBtn)) {
+					isWheelPressed = true;
 					redraw();
 				}
 			}
+
 			if (e.type == SDL_MOUSEBUTTONUP) {
-				isPressed = false;
+				if (isWheelPressed) {
+					isWheelPressed = false;
+					onWheelReleased();
+				}
+				if (isBackPressed) {
+					isBackPressed = false;
+					onBackButtonReleased();
+				}
 				redraw();
 			}
 		}
@@ -153,15 +161,16 @@ void UI::drawPolygon(SDL_Renderer *ren, int cx, int cy, int nSides, float radius
 	}
 }
 
-void UI::drawControls(SDL_Renderer *ren, int left, int top, int right, int bottom, float rad, bool isPressed) {
+void UI::drawControls(SDL_Renderer *ren, int left, int top, int right, int bottom, float rad) {
+	// Wheel body
 	int w = width - left - right;
 	int h = height - top - bottom;
 	int cx = (int)round(left + w / 2.0);
 	int cy = (int)round(top + h / 4.0);
 	float radius = 25.0;
-
 	drawPolygon(ren, cx, cy, 18, radius);
 
+	// Wheel indicator
 	int dx = (int)round(cos(rad) * (radius + 2));
 	int dy = (int)round(sin(rad) * (radius + 2));
 	SDL_RenderDrawLine(ren, cx, cy, cx + dx, cy + dy);
@@ -169,11 +178,10 @@ void UI::drawControls(SDL_Renderer *ren, int left, int top, int right, int botto
 	int btnWidth = 40;
 	SDL_Rect rct = { cx - btnWidth / 2, (int)round(top + 3 * (h / 4.0)) - btnWidth / 2, btnWidth, btnWidth };
 
-	if (isPressed)
+	if (isBackPressed)
 		SDL_RenderFillRect(ren, &rct);
 	else
 		SDL_RenderDrawRect(ren, &rct);
-
 	// SDL_RenderDrawRect(ren, &_btn1);
 	// SDL_RenderDrawRect(ren, &_btn2);
 }
