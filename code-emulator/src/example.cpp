@@ -13,14 +13,9 @@ BSD license, check license.txt for more information
 All text above, and the splash screen must be included in any redistribution
 *********************************************************************/
 
-#include "Adafruit_SSD1306.h"
-#include <cstdint>
-#include <cmath>
-#define min(x, y) (((x) < (y)) ? (x) : (y))
+#include <Arduino.h>
 
-void delay(unsigned long);
-long random(long);
-long random(long, long);
+#include "Adafruit_SSD1306.h"
 
 #define OLED_RESET 4
 Adafruit_SSD1306 display(OLED_RESET);
