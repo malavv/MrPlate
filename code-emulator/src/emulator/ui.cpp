@@ -9,6 +9,8 @@
 void onBackButtonReleased();
 void onWheelReleased();
 void onWheelScrolled(int8_t/* +1 or -1 */);
+size_t fakeRPM = 0;
+void onReadSpeedInDeciRPM(int16_t /* in deciRPM */);
 
 int UI::setup() {
 	// Start up SDL and make sure it went ok
@@ -120,6 +122,10 @@ int UI::evtloop() {
 			}
 		}
 		redraw();
+		if (fakeRPM < 1000)
+			onReadSpeedInDeciRPM(fakeRPM++);
+		else
+			onReadSpeedInDeciRPM(fakeRPM + rand() % 100);
 	}
 	return 0;
 }
