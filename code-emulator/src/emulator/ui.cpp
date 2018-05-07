@@ -2,9 +2,10 @@
 
 #include <iostream>
 #include <string>
-#include <SDL.h>
-#include <SDL_image.h>
+#include "SDL.h"
+#include "SDL_image.h"
 #include <atomic>
+#include <cmath>
 
 void onBackButtonReleased();
 void onWheelReleased();
@@ -47,7 +48,7 @@ void UI::redraw() {
 	drawControls(renderer, 532, 10, 10, 10, rad);
 	
 	{
-		std::lock_guard<std::mutex> guard(getMutex());
+		std::lock_guard<std::mutex> guard(_mutex);
 		memcpy(_writeBuffer, _screenBuffer, nBytes);
 	}
 	
@@ -127,18 +128,6 @@ int UI::evtloop() {
 		else
 			onReadSpeedInDeciRPM(fakeRPM + rand() % 100);
 	}
-	return 0;
-}
-
-int UI::destroy() {
-	// Destroy the various items
-	if (renderer) 
-		SDL_DestroyRenderer(renderer);
-	if (window) 
-		SDL_DestroyWindow(window);
-
-	IMG_Quit();
-	SDL_Quit();
 	return 0;
 }
 

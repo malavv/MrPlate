@@ -1,24 +1,38 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.10)
 project(MrEmulator)
+set(CMAKE_CXX_STANDARD 11)
 
-# Use our modified FindSDL2* modules
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${MrEmulator_SOURCE_DIR}/cmake")
-set(BIN_DIR ${MrEmulator_SOURCE_DIR}/bin)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
 
-set(SDL2 "D:/libs/sdl/vs/SDL2-2.0.7")
-
+# SDL2 Libraries
+set(SDL2_DIR "${CMAKE_SOURCE_DIR}/lib/SDL2-2.0.8")
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
+include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
 
-include_directories(${SDL2_INCLUDE_DIR})
-include_directories(${SDL2_IMAGE_INCLUDE_DIR})
-include_directories(include)
-include_directories("${MrEmulator_SOURCE_DIR}/lib/Adafruit_SSD1306")
-include_directories("${MrEmulator_SOURCE_DIR}/lib/Adafruit-GFX-Library")
-include_directories("${MrEmulator_SOURCE_DIR}/src/emulator")
-include_directories("${MrEmulator_SOURCE_DIR}/src")
+# Adafruit Libraries
+include_directories(
+  "${CMAKE_SOURCE_DIR}/lib/Adafruit_SSD1306"
+  "${CMAKE_SOURCE_DIR}/lib/Adafruit-GFX-Library")
+set(ADAFRUIT_SOURCE
+  "${CMAKE_SOURCE_DIR}/lib/Adafruit_SSD1306/Adafruit_SSD1306.cpp"
+  "${CMAKE_SOURCE_DIR}/lib/Adafruit_SSD1306/Adafruit_SSD1306.h"
+  "${CMAKE_SOURCE_DIR}/lib/Adafruit-GFX-Library/Adafruit_GFX.cpp"
+  "${CMAKE_SOURCE_DIR}/lib/Adafruit-GFX-Library/Adafruit_GFX.h")
 
-add_executable(MrEmulator src/emulator/emulator.cpp src/example.cpp lib/Adafruit_SSD1306/Adafruit_SSD1306.cpp lib/Adafruit-GFX-Library/Adafruit_GFX.cpp src/emulator/ui.cpp)
-target_link_libraries(MrEmulator ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY})
-install(TARGETS MrEmulator RUNTIME DESTINATION ${BIN_DIR})
+# Android Emulation
+include_directories(src/emulator)
+
+set(SOURCE_FILES 
+  src/example.cpp 
+  src/emulator/emulator.cpp
+  src/emulator/ui.h
+  src/emulator/ui.cpp)
+add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${ADAFRUIT_SOURCE})
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
+
+# Copy DLLs
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_directory
+    "${SDL2_DIR}/${VC_LIB_PATH_SUFFIX}"
+    $<TARGET_FILE_DIR:${PROJECT_NAME}>)

@@ -73,6 +73,8 @@ void onWheelScrolled(int8_t delta /* + or - */) {
 	std::cout << "wheel scroll " << (int)delta << std::endl;
 }
 
+void onReadSpeedInDeciRPM(short rpm) {}
+
 void setup() {
 
 	// by default, we'll generate the high voltage from the 3.3v line internally! (neat!)
