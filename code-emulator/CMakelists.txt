@@ -24,10 +24,14 @@ set(ADAFRUIT_SOURCE
 include_directories(src/emulator)
 
 set(SOURCE_FILES 
-  src/example.cpp 
+  #src/example.cpp 
+  src/main.cpp 
+  src/emulator/Arduino.cpp 
   src/emulator/emulator.cpp
   src/emulator/ui.h
-  src/emulator/ui.cpp)
+  src/emulator/ui.cpp
+  src/state/state.h
+  src/state/state.h)
 add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${ADAFRUIT_SOURCE})
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 

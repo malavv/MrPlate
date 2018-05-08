@@ -13,6 +13,7 @@
 #include <cstdlib>
 #include <io.h>
 #include <thread>
+#include <iostream>
 
 typedef bool boolean;
 
@@ -25,6 +26,14 @@ inline long random(long max) {
 inline void delay(unsigned long ms) {
 	std::this_thread::sleep_for(std::chrono::milliseconds(ms));
 }
+
+struct ISerial {
+	void begin(short baud) {}
+	void println(char* str) { std::cout << str << std::endl; }
+	void println(int16_t num) { std::cout << num << std::endl; }
+};
+
+extern ISerial Serial;
 
 #define min(a,b) (((a)<(b))?(a):(b))
 #define max(a,b) (((a)>(b))?(a):(b))
