@@ -1,3 +1,0 @@
-C:\apps\apps\CLion\ch-0\181.5087.36\bin\cmake\bin\cmake.exe -E remove -f CMakeFiles\MrEmulator.dir/objects.a
-D:\apps\mingw\mingw64\bin\ar.exe cr CMakeFiles\MrEmulator.dir/objects.a @CMakeFiles\MrEmulator.dir\objects1.rsp
-D:\apps\mingw\mingw64\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\MrEmulator.dir/objects.a -Wl,--no-whole-archive  -o MrEmulator.exe -Wl,--out-implib,libMrEmulator.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\MrEmulator.dir\linklibs.rsp

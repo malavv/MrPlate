@@ -1,4 +1,0 @@
-C:\apps\apps\CLion\ch-0\181.5087.36\bin\cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" E:\mr-plate\code-emulator
--- Configuring done
--- Generating done
--- Build files have been written to: E:/mr-plate/code-emulator/cmake-build-debug

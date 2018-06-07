@@ -43,7 +43,7 @@ int UI::setup() {
 	if (TTF_Init() == -1)
 		logError(std::cout, "LoadFontSystem");
 
-	gFont = TTF_OpenFont("lazy.ttf", 28);
+	gFont = TTF_OpenFont("hack.ttf", 28);
 	if (gFont == nullptr) {
 		logError(std::cout, "LoadFont");
 		SDL_DestroyRenderer(renderer);
