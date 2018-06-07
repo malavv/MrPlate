@@ -4,8 +4,10 @@
 #include <string>
 #include "SDL.h"
 #include "SDL_image.h"
+#include "SDL_ttf.h"
 #include <atomic>
 #include <cmath>
+#include "LTexture.h"
 
 void onBackButtonReleased();
 void onWheelReleased();
@@ -37,6 +39,20 @@ int UI::setup() {
 		SDL_Quit();
 		return 1;
 	}
+
+	if (TTF_Init() == -1)
+		logError(std::cout, "LoadFontSystem");
+
+	gFont = TTF_OpenFont("16_true_type_fonts/lazy.ttf", 28);
+	if (gFont == nullptr) {
+		logError(std::cout, "LoadFont");
+		SDL_DestroyRenderer(renderer);
+		SDL_Quit();
+	}
+
+	SDL_Color textColor = { 0, 0, 0 };
+  gTextTexture.loadFromRenderedText("hw rpm : 0", textColor, gFont, renderer);
+
 	return 0;
 }
 
@@ -45,13 +61,18 @@ void UI::redraw() {
 	SDL_RenderClear(renderer);
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 	SDL_RenderDrawRect(renderer, &_lcd);
-	drawControls(renderer, 532, 10, 10, 10, rad);
-	
+	drawControls(renderer, 532, 10, 10, 60, rad);
+	swapBufferToScreen();
+  gTextTexture.render(0, 0, nullptr, 0.0, nullptr, SDL_FLIP_NONE, renderer);
+	SDL_RenderPresent(renderer);
+}
+
+void UI::swapBufferToScreen() {
 	{
 		std::lock_guard<std::mutex> guard(_mutex);
 		memcpy(_writeBuffer, _screenBuffer, nBytes);
 	}
-	
+
 	size_t mult = _lcd.w / _ssd1306.w;
 	_pix.h = mult;
 	_pix.w = mult;
@@ -66,8 +87,6 @@ void UI::redraw() {
 			}
 		}
 	}
-
-	SDL_RenderPresent(renderer);
 }
 
 int UI::evtloop() {
@@ -170,13 +189,16 @@ void UI::drawControls(SDL_Renderer *ren, int left, int top, int right, int botto
 	int dy = (int)round(sin(rad) * (radius + 2));
 	SDL_RenderDrawLine(ren, cx, cy, cx + dx, cy + dy);
 
+	// Button Outline
 	int btnWidth = 40;
 	SDL_Rect rct = { cx - btnWidth / 2, (int)round(top + 3 * (h / 4.0)) - btnWidth / 2, btnWidth, btnWidth };
 
+	// Button Infill
 	if (isBackPressed)
 		SDL_RenderFillRect(ren, &rct);
 	else
 		SDL_RenderDrawRect(ren, &rct);
-	// SDL_RenderDrawRect(ren, &_btn1);
-	// SDL_RenderDrawRect(ren, &_btn2);
+
+	// RPM Text
+
 }

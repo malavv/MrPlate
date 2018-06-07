@@ -1,3 +1,6 @@
+#define SDL_MAIN_NEEDED
+#define SDL_MAIN_HANDLED
+
 #include "ui.h"
 
 #include "Adafruit_SSD1306.h"

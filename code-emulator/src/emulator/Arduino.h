@@ -29,13 +29,16 @@ inline void delay(unsigned long ms) {
 
 struct ISerial {
 	void begin(short baud) {}
+	void println(const char* str) { std::cout << str << std::endl; }
 	void println(char* str) { std::cout << str << std::endl; }
 	void println(int16_t num) { std::cout << num << std::endl; }
 };
 
 extern ISerial Serial;
 
-#define min(a,b) (((a)<(b))?(a):(b))
-#define max(a,b) (((a)>(b))?(a):(b))
+#ifndef NOMINMAX
+#define min(x,y) ((x) < (y) ? (x) : (y))
+#define max(x,y) ((x) > (y) ? (x) : (y))
+#endif
 
 #endif

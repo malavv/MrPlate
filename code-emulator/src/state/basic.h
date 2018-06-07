@@ -44,7 +44,7 @@ public:
 		Serial.println("Select Pressed in basic");
 	}
 	virtual void navTurned(int8_t delta) {
-		power += delta;
+		power -= delta;
 		if (power > 4096) power = 4096;
 		if (power < 0) power = 0;
 	}

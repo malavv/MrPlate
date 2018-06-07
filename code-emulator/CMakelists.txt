@@ -8,7 +8,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
 set(SDL2_DIR "${CMAKE_SOURCE_DIR}/lib/SDL2-2.0.8")
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
-include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
+find_package(SDL2_ttf REQUIRED)
+include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} ${SDL2TTF_INCLUDE_DIR})
 
 # Adafruit Libraries
 include_directories(
@@ -21,7 +22,10 @@ set(ADAFRUIT_SOURCE
   "${CMAKE_SOURCE_DIR}/lib/Adafruit-GFX-Library/Adafruit_GFX.h")
 
 # Android Emulation
-include_directories(src/emulator)
+include_directories("${PROJECT_SOURCE_DIR}/src/emulator")
+
+# Source
+include_directories(${PROJECT_SOURCE_DIR}/src)
 
 set(SOURCE_FILES 
   #src/example.cpp 
@@ -30,10 +34,11 @@ set(SOURCE_FILES
   src/emulator/emulator.cpp
   src/emulator/ui.h
   src/emulator/ui.cpp
-  src/state/state.h
-  src/state/state.h)
+  src/emulator/LTexture.h
+  src/emulator/LTexture.cpp)
+
 add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${ADAFRUIT_SOURCE})
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY})
 
 # Copy DLLs
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD

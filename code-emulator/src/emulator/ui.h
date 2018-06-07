@@ -4,8 +4,10 @@
 #include <iostream>
 #include "SDL.h"
 #include "SDL_image.h"
+#include "SDL_ttf.h"
 #include <mutex>
 #include <atomic>
+#include "LTexture.h"
 
 class UI {
 public:
@@ -31,7 +33,9 @@ public:
 			SDL_DestroyRenderer(renderer);
 		if (window)
 			SDL_DestroyWindow(window);
-
+		if (gFont)
+			TTF_CloseFont(gFont);
+		TTF_Quit();
 		IMG_Quit();
 		SDL_Quit();
 	}
@@ -55,9 +59,10 @@ private:
 	void drawControls(SDL_Renderer * ren, int left, int top, int right, int bottom, float rad);
 	void logError(std::ostream &os, const std::string &msg);
 	void redraw();
+	void swapBufferToScreen();
 
 	static const int width = 592;
-	static const int height = 148;
+	static const int height = 198;
 
 	static UI* _instance;
 
@@ -80,6 +85,9 @@ private:
 	SDL_Rect _ui, _lcd, _ssd1306, _pix;
 
 	SDL_Rect _backBtn, _wheelBtn;
+
+	TTF_Font* gFont;
+  LTexture gTextTexture;
 };
 
 #endif // _UI_H_

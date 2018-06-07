@@ -50,7 +50,7 @@ public:
 	}
 	virtual int8_t id() { return MENU; }
 	virtual void navTurned(int8_t delta) {
-		index += delta;
+		index -= delta;
 		if (index < -5) index = -5;
 		if (index > 5) index = 5;
 	}

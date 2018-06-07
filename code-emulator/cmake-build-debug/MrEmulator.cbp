@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="MrEmulator"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="E:/mr-plate/code-emulator/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/apps/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/mr-plate/code-emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="D:/apps/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/mr-plate/code-emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/apps/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/mr-plate/code-emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/apps/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/mr-plate/code-emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="E:/mr-plate/code-emulator/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/apps/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/mr-plate/code-emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="D:/apps/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/mr-plate/code-emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/apps/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/mr-plate/code-emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/apps/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/mr-plate/code-emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MrEmulator">
+				<Option output="E:/mr-plate/code-emulator/cmake-build-debug/MrEmulator.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/mr-plate/code-emulator/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="E:/mr-plate/code-emulator/lib/SDL2-2.0.8/include"/>
+					<Add directory="E:/mr-plate/code-emulator/lib/Adafruit_SSD1306"/>
+					<Add directory="E:/mr-plate/code-emulator/lib/Adafruit-GFX-Library"/>
+					<Add directory="E:/mr-plate/code-emulator/src/emulator"/>
+					<Add directory="E:/mr-plate/code-emulator/src"/>
+					<Add directory="D:/apps/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++"/>
+					<Add directory="D:/apps/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/apps/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward"/>
+					<Add directory="D:/apps/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include"/>
+					<Add directory="D:/apps/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed"/>
+					<Add directory="D:/apps/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/apps/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/mr-plate/code-emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 MrEmulator"/>
+					<CompileFile command="D:/apps/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/mr-plate/code-emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/apps/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/mr-plate/code-emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/apps/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/mr-plate/code-emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MrEmulator/fast">
+				<Option output="E:/mr-plate/code-emulator/cmake-build-debug/MrEmulator.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/mr-plate/code-emulator/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="E:/mr-plate/code-emulator/lib/SDL2-2.0.8/include"/>
+					<Add directory="E:/mr-plate/code-emulator/lib/Adafruit_SSD1306"/>
+					<Add directory="E:/mr-plate/code-emulator/lib/Adafruit-GFX-Library"/>
+					<Add directory="E:/mr-plate/code-emulator/src/emulator"/>
+					<Add directory="E:/mr-plate/code-emulator/src"/>
+					<Add directory="D:/apps/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++"/>
+					<Add directory="D:/apps/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/apps/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward"/>
+					<Add directory="D:/apps/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include"/>
+					<Add directory="D:/apps/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed"/>
+					<Add directory="D:/apps/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/apps/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/mr-plate/code-emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 MrEmulator/fast"/>
+					<CompileFile command="D:/apps/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/mr-plate/code-emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/apps/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/mr-plate/code-emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/apps/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/mr-plate/code-emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="E:/mr-plate/code-emulator/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/apps/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/mr-plate/code-emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="D:/apps/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/mr-plate/code-emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/apps/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/mr-plate/code-emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/apps/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/mr-plate/code-emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="E:/mr-plate/code-emulator/lib/Adafruit-GFX-Library/Adafruit_GFX.cpp">
+			<Option target="MrEmulator"/>
+		</Unit>
+		<Unit filename="E:/mr-plate/code-emulator/lib/Adafruit-GFX-Library/Adafruit_GFX.h">
+			<Option target="MrEmulator"/>
+		</Unit>
+		<Unit filename="E:/mr-plate/code-emulator/lib/Adafruit_SSD1306/Adafruit_SSD1306.cpp">
+			<Option target="MrEmulator"/>
+		</Unit>
+		<Unit filename="E:/mr-plate/code-emulator/lib/Adafruit_SSD1306/Adafruit_SSD1306.h">
+			<Option target="MrEmulator"/>
+		</Unit>
+		<Unit filename="E:/mr-plate/code-emulator/src/emulator/Arduino.cpp">
+			<Option target="MrEmulator"/>
+		</Unit>
+		<Unit filename="E:/mr-plate/code-emulator/src/emulator/Arduino.h">
+			<Option target="MrEmulator"/>
+		</Unit>
+		<Unit filename="E:/mr-plate/code-emulator/src/emulator/LTexture.cpp">
+			<Option target="MrEmulator"/>
+		</Unit>
+		<Unit filename="E:/mr-plate/code-emulator/src/emulator/LTexture.h">
+			<Option target="MrEmulator"/>
+		</Unit>
+		<Unit filename="E:/mr-plate/code-emulator/src/emulator/emulator.cpp">
+			<Option target="MrEmulator"/>
+		</Unit>
+		<Unit filename="E:/mr-plate/code-emulator/src/emulator/ui.cpp">
+			<Option target="MrEmulator"/>
+		</Unit>
+		<Unit filename="E:/mr-plate/code-emulator/src/emulator/ui.h">
+			<Option target="MrEmulator"/>
+		</Unit>
+		<Unit filename="E:/mr-plate/code-emulator/src/main.cpp">
+			<Option target="MrEmulator"/>
+		</Unit>
+		<Unit filename="E:/mr-plate/code-emulator/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="E:/mr-plate/code-emulator/cmake/FindSDL2.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="E:/mr-plate/code-emulator/cmake/FindSDL2_image.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="E:/mr-plate/code-emulator/cmake/FindSDL2_ttf.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

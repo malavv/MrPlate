@@ -1,0 +1,3 @@
+E:/mr-plate/code-emulator/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+E:/mr-plate/code-emulator/cmake-build-debug/CMakeFiles/MrEmulator.dir
+E:/mr-plate/code-emulator/cmake-build-debug/CMakeFiles/edit_cache.dir

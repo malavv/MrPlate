@@ -2,15 +2,14 @@
 #define _STATE_INIT_H_
 
 #include "Adafruit_SSD1306.h"
-#include "state/init.h"
 #include "state/menu.h"
 
 extern Adafruit_SSD1306 display;
 
 class Initializing : public State {
 public:
-	Initializing() {};
-	~Initializing() {};
+	Initializing() = default;
+	~Initializing() = default;
 
 	virtual State* onEnter() { return this; }
 	virtual int8_t id() { return INIT; }
@@ -41,6 +40,7 @@ public:
 		display.display();
 
 		delay(500);
+		Serial.println("[INIT] Initialization ended");
 		return MENU;
 	};
 
