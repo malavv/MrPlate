@@ -43,14 +43,15 @@ int UI::setup() {
 	if (TTF_Init() == -1)
 		logError(std::cout, "LoadFontSystem");
 
-	gFont = TTF_OpenFont("16_true_type_fonts/lazy.ttf", 28);
+	gFont = TTF_OpenFont("lazy.ttf", 28);
 	if (gFont == nullptr) {
 		logError(std::cout, "LoadFont");
 		SDL_DestroyRenderer(renderer);
 		SDL_Quit();
+    return 1;
 	}
 
-	SDL_Color textColor = { 0, 0, 0 };
+	SDL_Color textColor = { 255, 255, 255 };
   gTextTexture.loadFromRenderedText("hw rpm : 0", textColor, gFont, renderer);
 
 	return 0;
@@ -63,7 +64,7 @@ void UI::redraw() {
 	SDL_RenderDrawRect(renderer, &_lcd);
 	drawControls(renderer, 532, 10, 10, 60, rad);
 	swapBufferToScreen();
-  gTextTexture.render(0, 0, nullptr, 0.0, nullptr, SDL_FLIP_NONE, renderer);
+  gTextTexture.render(30, 150, nullptr, 0.0, nullptr, SDL_FLIP_NONE, renderer);
 	SDL_RenderPresent(renderer);
 }
 
