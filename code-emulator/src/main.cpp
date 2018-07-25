@@ -8,8 +8,9 @@
 #include "state/basic.h"
 #include "state/adv.h"
 #include "state/info.h"
+#include "pins.h"
 
-Adafruit_SSD1306 display(4 /* OLED RESET */);
+Adafruit_SSD1306 display(PIN_OLED_RESET);
 State *lastState, *state, *states[5];
 
 // Initialization of the Code
