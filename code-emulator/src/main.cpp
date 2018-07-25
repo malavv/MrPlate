@@ -10,40 +10,36 @@
 #include "state/info.h"
 
 Adafruit_SSD1306 display(4 /* OLED RESET */);
+State *lastState, *state, *states[5];
 
-State* states[] = {
-	new Initializing(),
-	new Menu(),
-	new Basic(),
-	new Advanced(),
-	new Info()
-};
-
-State* state = states[0];
-State* lastState = state;
-
+// Initialization of the Code
 void setup() {
-    Serial.begin(9600);
+  Serial.begin(9600);
+
+  states[0] = new Initializing();
+  states[1] = new Menu();
+  states[2] = new Basic();
+  states[3] = new Advanced();
+  states[4] = new Info();
+
+  state = states[0];
+  lastState = state;
 }
 
-void loop() { 
-	while(state = states[state->process()]) {
-		if (state->id() != lastState->id())
-			state->onEnter();
-		lastState = state;
-	} 
+// Main loop dealing with states and events
+void loop() {
+  while (true) {
+    state = states[state->process()];
+    if (!state)
+      return;
+    if (state->id() != lastState->id())
+      state->onEnter();
+    lastState = state;
+  }
 }
 
-void onBackButtonReleased() {
-	state->backPressed();
-}
-
-void onWheelReleased() {
-	state->selectPressed();
-}
-
-void onWheelScrolled(int8_t delta /* + or - */) {
-	state->navTurned(delta);
-}
-
+// Set of callback to be used by the Hardware Abstraction Layer (Teensy or Emulator)
+void onBackButtonReleased() { state->backPressed(); }
+void onWheelReleased() { state->selectPressed(); }
+void onWheelScrolled(int8_t delta /* + or - */) { state->navTurned(delta); }
 void onReadSpeedInDeciRPM(short rpm) {}

@@ -12,171 +12,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1329f4d4-c286-444a-8776-928effbf3d0d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakelists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakelists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake/FindSDL2.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/FindSDL2.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake/FindSDL2_image.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/FindSDL2_image.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake/FindSDL2_ttf.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/FindSDL2_ttf.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Adafruit-GFX-Library" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Adafruit_SSD1306" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/BUGS.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/COPYING.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/README-SDL.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/README.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/WhatsNew.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/README-android.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/README-cmake.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/README-directfb.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/README-dynapi.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/README-emscripten.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/README-gesture.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/README-hg.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/README-ios.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/README-linux.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/README-macosx.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/README-nacl.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/README-pandora.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/README-platforms.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/README-porting.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/README-psp.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/README-raspberrypi.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/README-touch.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/README-wince.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/README-windows.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/README-winrt.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/docs/doxyfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_assert.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_atomic.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_audio.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_bits.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_blendmode.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_clipboard.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_config.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_config.h.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_config.h.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_config_android.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_config_iphoneos.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_config_macosx.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_config_macosx.h.orig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_config_minimal.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_config_pandora.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_config_psp.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_config_windows.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_config_winrt.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_config_wiz.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_copying.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_cpuinfo.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_egl.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_endian.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_error.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_events.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_filesystem.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_gamecontroller.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_gesture.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_haptic.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_hints.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_image.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_joystick.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_keyboard.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_keycode.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_loadso.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_log.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_main.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_messagebox.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_mouse.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_mutex.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_name.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_opengl.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_opengl_glext.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_opengles.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_opengles2.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_opengles2_gl2.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_opengles2_gl2ext.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_opengles2_gl2platform.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_opengles2_khrplatform.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_pixels.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_platform.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_power.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_quit.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_rect.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_render.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_revision.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_rwops.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_scancode.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_shape.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_stdinc.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_surface.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_system.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_syswm.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_test.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_test_assert.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_test_common.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_test_compare.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_test_crc32.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_test_font.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_test_fuzzer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_test_harness.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_test_images.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_test_log.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_test_md5.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_test_memory.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_test_random.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_thread.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_timer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_touch.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_ttf.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_types.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_version.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_video.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/SDL_vulkan.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/begin_code.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/include/close_code.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x64/LICENSE.freetype.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x64/LICENSE.jpeg.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x64/LICENSE.png.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x64/LICENSE.tiff.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x64/LICENSE.webp.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x64/LICENSE.zlib.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x64/SDL2.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x64/SDL2.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x64/SDL2_image.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x64/SDL2_image.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x64/SDL2_ttf.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x64/SDL2_ttf.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x64/SDL2main.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x64/SDL2test.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x64/libfreetype-6.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x64/libjpeg-9.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x64/libpng16-16.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x64/libtiff-5.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x64/libwebp-7.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x64/zlib1.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x86/LICENSE.freetype.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x86/LICENSE.jpeg.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x86/LICENSE.png.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x86/LICENSE.tiff.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x86/LICENSE.webp.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x86/LICENSE.zlib.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x86/SDL2.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x86/SDL2.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x86/SDL2_image.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x86/SDL2_image.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x86/SDL2_ttf.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x86/SDL2_ttf.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x86/SDL2main.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x86/SDL2test.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x86/libfreetype-6.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x86/libjpeg-9.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x86/libpng16-16.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x86/libtiff-5.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x86/libwebp-7.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SDL2-2.0.8/lib/x86/zlib1.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/emulator/emulator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/emulator/emulator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example.cpp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -190,72 +25,16 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ui.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/emulator/ui.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="9" selection-start-column="9" selection-end-column="9" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-                <element signature="e#345#1407#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="45" selection-start-line="45" selection-end-line="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cmake/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="255">
-                <caret line="57" column="11" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="11" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="emulator.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/emulator/emulator.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="2" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ui.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/emulator/ui.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Arduino.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/emulator/Arduino.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="16" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="16" />
+            <state relative-caret-position="340">
+              <caret line="40" column="84" lean-forward="true" selection-start-line="40" selection-start-column="84" selection-end-line="40" selection-end-column="84" />
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+                <element signature="e#396#436#0" />
+                <element signature="e#438#628#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -295,6 +74,7 @@
         <option value="$PROJECT_DIR$/cmake/FindSDL2_image.cmake" />
         <option value="$PROJECT_DIR$/src/emulator/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/main.cpp" />
       </list>
     </option>
   </component>
@@ -307,9 +87,10 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="564" />
-    <option name="width" value="1491" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="228" />
+    <option name="y" value="7" />
+    <option name="width" value="1819" />
     <option name="height" value="1129" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -354,12 +135,6 @@
               <item name="code-emulator" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="emulator" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MrEmulator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-emulator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="state" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -414,12 +189,12 @@
       <workItem from="1532391736730" duration="96000" />
       <workItem from="1532532959927" duration="1369000" />
       <workItem from="1532538727376" duration="740000" />
-      <workItem from="1532539487276" duration="8104000" />
+      <workItem from="1532539487276" duration="11642000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31444000" />
+    <option name="totallyTimeSpent" value="34982000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -431,17 +206,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2064" height="1138" extended-state="6" />
+    <frame x="228" y="7" width="1819" height="1129" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49854228" visible="true" weight="0.102171764" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49854228" visible="true" weight="0.11622684" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4995064" />
       <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.85538006" weight="0.315" />
       <window_info anchor="bottom" id="CMake" order="7" sideWeight="0.8415597" weight="0.362" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5039487" side_tool="true" visible="true" weight="0.329" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5004936" side_tool="true" weight="0.903" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4995064" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49605134" visible="true" weight="0.329" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49605134" weight="0.329" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4995064" weight="0.903" />
       <window_info id="Structure" order="1" sideWeight="0.50145775" side_tool="true" weight="0.09472656" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -717,17 +492,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/ui.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" selection-start-column="9" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-            <element signature="e#345#1407#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/emulator/Arduino.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -781,17 +545,33 @@
         <state relative-caret-position="-357" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="-11">
+          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+    <entry file="file://$PROJECT_DIR$/src/emulator/ui.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        <state>
+          <caret column="9" selection-start-column="9" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#345#1407#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="40" column="84" lean-forward="true" selection-start-line="40" selection-start-column="84" selection-end-line="40" selection-end-column="84" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+            <element signature="e#396#436#0" />
+            <element signature="e#438#628#0" />
+          </folding>
         </state>
       </provider>
     </entry>
