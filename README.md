@@ -22,3 +22,6 @@ Maxime Lavigne <malavv>
 ### code-emulator
 
 **How to build/run**
+(either through Visual Studio 17, or CLion, but must use VS toolchain.)
+* Regen CMake
+* Run MrEmulator.exe

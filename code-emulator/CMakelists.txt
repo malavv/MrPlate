@@ -1,53 +1,64 @@
-cmake_minimum_required(VERSION 3.10)
+#-----------------------------------------------------------------------------
+# CMake File for the MrPlate project.
+#
+# This CMake file was made to be "kind-of" toolchain agnostic. Still, SDL2
+# needs to be either VS or MinGW... So I chose MinGW to have some hope
+# of being Linux compatible.
+#
+# Toolchain : MinGW w64
+# Librairies :
+#   - SDL v2.0.8
+#
+# Prefered IDE - Jetbrains CLion (NOT VS compiler compatible)
+#-----------------------------------------------------------------------------
+cmake_minimum_required(VERSION 2.6)
 project(MrEmulator)
-set(CMAKE_CXX_STANDARD 11)
 
+set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
 
-# SDL2 Libraries
-set(SDL2_DIR "${CMAKE_SOURCE_DIR}/lib/SDL2-2.0.8")
+set(SDL2_INCLUDES "")
+set(SDL2_LIBS "")
+set(SDL2_SHARED_LIBS "")
+
+# Adafruit Libraries
+find_file(ADASSD1306 Adafruit_SSD1306 HINTS src)
+find_file(ADAGFX Adafruit-GFX-Library HINTS src) # Removed SPITFT files from Adafruit-GFX github code
+file(GLOB ADD_LIB_SOURCES "${ADASSD1306}/*.cpp" "${ADAGFX}/*.cpp") # using files directly, not as external library
+
+# Define SDL2 Library
+set(ENV{SDL2_ROOT_DIR} lib/SDL2)
+set(ENV{SDL2_IMAGE_ROOT_DIR} lib/SDL2_image)
+set(ENV{SDL2_TTF_ROOT_DIR} lib/SDL2_ttf)
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 find_package(SDL2_ttf REQUIRED)
-include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} ${SDL2TTF_INCLUDE_DIR})
+set(SDL2_INCLUDES ${INCLUDES} ${SDL2_INCLUDE_DIR} ${SDL2_image_INCLUDE_DIR} ${SDL2_ttf_INCLUDE_DIR})
+set(SDL2_LIBS ${LIBRARIES} ${SDL2_LIBRARIES} ${SDL2_image_LIBRARY} ${SDL2_ttf_LIBRARY})
+set(SDL2_SHARED_LIBS ${SDL2_SHARED_LIBRARY} ${SDL2_ttf_SHARED_LIBRARIES} ${SDL2_image_SHARED_LIBRARIES})
 
-# Adafruit Libraries
-include_directories(
-  "${CMAKE_SOURCE_DIR}/lib/Adafruit_SSD1306"
-  "${CMAKE_SOURCE_DIR}/lib/Adafruit-GFX-Library")
-set(ADAFRUIT_SOURCE
-  "${CMAKE_SOURCE_DIR}/lib/Adafruit_SSD1306/Adafruit_SSD1306.cpp"
-  "${CMAKE_SOURCE_DIR}/lib/Adafruit_SSD1306/Adafruit_SSD1306.h"
-  "${CMAKE_SOURCE_DIR}/lib/Adafruit-GFX-Library/Adafruit_GFX.cpp"
-  "${CMAKE_SOURCE_DIR}/lib/Adafruit-GFX-Library/Adafruit_GFX.h")
-
-# Android Emulation
-include_directories("${PROJECT_SOURCE_DIR}/src/emulator")
+# Device Emulator (cannot be declared as sub-library because SDL requires to see "main" when linking
+file(GLOB ADD_EMULATOR_SOURCES src/emulator/*.cpp)
 
 # Source
-include_directories(${PROJECT_SOURCE_DIR}/src)
+include_directories(src)
+set(SOURCE_FILES
+  src/main.cpp)
 
-set(SOURCE_FILES 
-  #src/example.cpp 
-  src/main.cpp 
-  src/emulator/Arduino.cpp 
-  src/emulator/emulator.cpp
-  src/emulator/ui.h
-  src/emulator/ui.cpp
-  src/emulator/LTexture.h
-  src/emulator/LTexture.cpp)
+# Declare MrPlate Executable
+add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${ADD_LIB_SOURCES} ${ADD_EMULATOR_SOURCES})
 
-add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${ADAFRUIT_SOURCE})
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY})
+# Add Includes
+target_include_directories(${PROJECT_NAME} PUBLIC ${ADASSD1306} ${ADAGFX} ${SDL2_INCLUDES} src/emulator)
+# Add Libraires
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBS})
+# Add Linking Properties
+set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS ${SDL2_LINK_FLAGS})
 
 # Copy DLLs
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy_directory
-    "${SDL2_DIR}/${VC_LIB_PATH_SUFFIX}"
-    $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+  COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SDL2_SHARED_LIBS} $<TARGET_FILE_DIR:${PROJECT_NAME}>)
 
-# Copy Res
+# Copy Ressources
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy_directory
-    "${CMAKE_SOURCE_DIR}/res"
-    $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+  COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/res" $<TARGET_FILE_DIR:${PROJECT_NAME}>)

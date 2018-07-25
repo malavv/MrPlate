@@ -10,8 +10,6 @@
 #include "state/info.h"
 
 Adafruit_SSD1306 display(4 /* OLED RESET */);
-State* state = new Initializing();
-State* lastState = state;
 
 State* states[] = {
 	new Initializing(),
@@ -20,6 +18,9 @@ State* states[] = {
 	new Advanced(),
 	new Info()
 };
+
+State* state = states[0];
+State* lastState = state;
 
 void setup() {
     Serial.begin(9600);
