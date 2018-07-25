@@ -11,9 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1329f4d4-c286-444a-8776-928effbf3d0d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="1329f4d4-c286-444a-8776-928effbf3d0d" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,8 +26,8 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="40" column="84" lean-forward="true" selection-start-line="40" selection-start-column="84" selection-end-line="40" selection-end-column="84" />
+            <state relative-caret-position="408">
+              <caret line="44" column="39" lean-forward="true" selection-start-line="44" selection-start-column="39" selection-end-line="44" selection-end-column="39" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
                 <element signature="e#396#436#0" />
@@ -130,12 +128,6 @@
               <item name="code-emulator" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="MrEmulator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-emulator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="emulator" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -189,12 +181,12 @@
       <workItem from="1532391736730" duration="96000" />
       <workItem from="1532532959927" duration="1369000" />
       <workItem from="1532538727376" duration="740000" />
-      <workItem from="1532539487276" duration="11642000" />
+      <workItem from="1532539487276" duration="12119000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34982000" />
+    <option name="totallyTimeSpent" value="35459000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -207,7 +199,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="228" y="7" width="1819" height="1129" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49854228" visible="true" weight="0.11622684" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4995064" />
@@ -565,8 +556,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="40" column="84" lean-forward="true" selection-start-line="40" selection-start-column="84" selection-end-line="40" selection-end-column="84" />
+        <state relative-caret-position="408">
+          <caret line="44" column="39" lean-forward="true" selection-start-line="44" selection-start-column="39" selection-end-line="44" selection-end-column="39" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
             <element signature="e#396#436#0" />
