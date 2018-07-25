@@ -43,7 +43,7 @@ file(GLOB ADD_EMULATOR_SOURCES src/hal/x64/*.cpp)
 # Source
 include_directories(src)
 set(SOURCE_FILES
-  src/main.cpp)
+  src/main.cpp src/hal/arduino/led.h)
 
 # Declare MrPlate Executable
 add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${ADD_LIB_SOURCES} ${ADD_EMULATOR_SOURCES})

@@ -15,6 +15,22 @@
 #include <thread>
 #include <iostream>
 
+enum PIN_MODE {
+	INPUT = 0,
+	OUTPUT,
+	INPUT_PULLUP
+};
+enum PIN_LEVEL {
+	LOW = 0,
+	HIGH
+};
+enum INTERRUPT_MODE {
+	LOW,
+	CHANGE,
+	RISING,
+	FALLING
+};
+
 typedef bool boolean;
 
 inline long random(long min, long max) {
@@ -26,6 +42,10 @@ inline long random(long max) {
 inline void delay(unsigned long ms) {
 	std::this_thread::sleep_for(std::chrono::milliseconds(ms));
 }
+inline void digitalWrite(int8_t pin, int8_t val) {}
+inline void pinMode(int8_t pin, int8_t val) {}
+inline void attachInterrupt(int8_t pin, void (*callback)(void), int8_t val);
+
 
 struct ISerial {
 	void begin(short baud) {}

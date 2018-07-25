@@ -1,7 +1,6 @@
 #include "Arduino.h"
 
 #include "Adafruit_SSD1306.h"
-#include <iostream>
 
 #include "state/state.h"
 #include "state/init.h"
@@ -13,9 +12,18 @@
 Adafruit_SSD1306 display(PIN_OLED_RESET);
 State *lastState, *state, *states[5];
 
+// Set of callback to be used by the Hardware Abstraction Layer (Teensy or Emulator)
+void onBackButtonReleased() { state->backPressed(); }
+void onWheelReleased() { state->selectPressed(); }
+void onWheelScrolled(int8_t delta /* + or - */) { state->navTurned(delta); }
+void onReadSpeedInDeciRPM(short rpm) {}
+
 // Initialization of the Code
 void setup() {
   Serial.begin(9600);
+
+  pinMode(PIN_BACK_BTN,INPUT_PULLUP);
+  pinMode(PIN_LED, OUTPUT);
 
   states[0] = new Initializing();
   states[1] = new Menu();
@@ -25,6 +33,9 @@ void setup() {
 
   state = states[0];
   lastState = state;
+
+  digitalWrite(PIN_LED, HIGH);
+  attachInterrupt(PIN_BACK_BTN, onBackButtonReleased, RISING);
 }
 
 // Main loop dealing with states and events
@@ -38,9 +49,3 @@ void loop() {
     lastState = state;
   }
 }
-
-// Set of callback to be used by the Hardware Abstraction Layer (Teensy or Emulator)
-void onBackButtonReleased() { state->backPressed(); }
-void onWheelReleased() { state->selectPressed(); }
-void onWheelScrolled(int8_t delta /* + or - */) { state->navTurned(delta); }
-void onReadSpeedInDeciRPM(short rpm) {}
