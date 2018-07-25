@@ -22,8 +22,8 @@ set(SDL2_LIBS "")
 set(SDL2_SHARED_LIBS "")
 
 # Adafruit Libraries
-find_file(ADASSD1306 Adafruit_SSD1306 HINTS src)
-find_file(ADAGFX Adafruit-GFX-Library HINTS src) # Removed SPITFT files from Adafruit-GFX github code
+find_file(ADASSD1306 Adafruit_SSD1306 HINTS src/hal/x64)
+find_file(ADAGFX Adafruit-GFX-Library HINTS src/hal/x64) # Removed SPITFT files from Adafruit-GFX github code
 file(GLOB ADD_LIB_SOURCES "${ADASSD1306}/*.cpp" "${ADAGFX}/*.cpp") # using files directly, not as external library
 
 # Define SDL2 Library
@@ -38,7 +38,7 @@ set(SDL2_LIBS ${LIBRARIES} ${SDL2_LIBRARIES} ${SDL2_image_LIBRARY} ${SDL2_ttf_LI
 set(SDL2_SHARED_LIBS ${SDL2_SHARED_LIBRARY} ${SDL2_ttf_SHARED_LIBRARIES} ${SDL2_image_SHARED_LIBRARIES})
 
 # Device Emulator (cannot be declared as sub-library because SDL requires to see "main" when linking
-file(GLOB ADD_EMULATOR_SOURCES src/emulator/*.cpp)
+file(GLOB ADD_EMULATOR_SOURCES src/hal/x64/*.cpp)
 
 # Source
 include_directories(src)
@@ -49,7 +49,7 @@ set(SOURCE_FILES
 add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${ADD_LIB_SOURCES} ${ADD_EMULATOR_SOURCES})
 
 # Add Includes
-target_include_directories(${PROJECT_NAME} PUBLIC ${ADASSD1306} ${ADAGFX} ${SDL2_INCLUDES} src/emulator)
+target_include_directories(${PROJECT_NAME} PUBLIC ${ADASSD1306} ${ADAGFX} ${SDL2_INCLUDES} src/hal/x64)
 # Add Libraires
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBS})
 # Add Linking Properties

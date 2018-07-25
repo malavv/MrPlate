@@ -11,28 +11,152 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1329f4d4-c286-444a-8776-928effbf3d0d" name="Default" comment="" />
+    <list default="true" id="1329f4d4-c286-444a-8776-928effbf3d0d" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakelists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakelists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Adafruit_GFX.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Adafruit_GFX.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Adafruit_GFX.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Adafruit_GFX.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeMono12pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeMono12pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeMono18pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeMono18pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeMono24pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeMono24pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeMono9pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeMono9pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeMonoBold12pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeMonoBold12pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeMonoBold18pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeMonoBold18pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeMonoBold24pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeMonoBold24pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeMonoBold9pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeMonoBold9pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeMonoBoldOblique12pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeMonoBoldOblique12pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeMonoBoldOblique18pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeMonoBoldOblique18pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeMonoBoldOblique24pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeMonoBoldOblique24pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeMonoBoldOblique9pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeMonoBoldOblique9pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeMonoOblique12pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeMonoOblique12pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeMonoOblique18pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeMonoOblique18pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeMonoOblique24pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeMonoOblique24pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeMonoOblique9pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeMonoOblique9pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSans12pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSans12pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSans18pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSans18pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSans24pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSans24pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSans9pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSans9pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSansBold12pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSansBold12pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSansBold18pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSansBold18pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSansBold24pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSansBold24pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSansBold9pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSansBold9pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSansBoldOblique12pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSansBoldOblique12pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSansBoldOblique18pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSansBoldOblique18pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSansBoldOblique24pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSansBoldOblique24pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSansBoldOblique9pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSansBoldOblique9pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSansOblique12pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSansOblique12pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSansOblique18pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSansOblique18pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSansOblique24pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSansOblique24pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSansOblique9pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSansOblique9pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSerif12pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSerif12pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSerif18pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSerif18pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSerif24pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSerif24pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSerif9pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSerif9pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSerifBold12pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSerifBold12pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSerifBold18pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSerifBold18pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSerifBold24pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSerifBold24pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSerifBold9pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSerifBold9pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSerifBoldItalic12pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSerifBoldItalic12pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSerifBoldItalic18pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSerifBoldItalic18pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSerifBoldItalic24pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSerifBoldItalic24pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSerifBoldItalic9pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSerifBoldItalic9pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSerifItalic12pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSerifItalic12pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSerifItalic18pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSerifItalic18pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSerifItalic24pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSerifItalic24pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/FreeSerifItalic9pt7b.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/FreeSerifItalic9pt7b.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/Org_01.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/Org_01.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/Picopixel.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/Picopixel.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/Tiny3x3a2pt7b" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/Tiny3x3a2pt7b" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/Fonts/TomThumb.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/Fonts/TomThumb.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/fontconvert/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/fontconvert/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/fontconvert/fontconvert.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/fontconvert/fontconvert.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/fontconvert/fontconvert_win.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/fontconvert/fontconvert_win.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/fontconvert/makefonts.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/fontconvert/makefonts.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/gfxfont.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/gfxfont.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/glcdfont.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/glcdfont.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/library.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/library.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit-GFX-Library/license.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit-GFX-Library/license.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit_SSD1306/Adafruit_SSD1306.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit_SSD1306/Adafruit_SSD1306.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit_SSD1306/Adafruit_SSD1306.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit_SSD1306/Adafruit_SSD1306.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit_SSD1306/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit_SSD1306/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit_SSD1306/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit_SSD1306/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit_SSD1306/examples/ssd1306_128x32_i2c/ssd1306_128x32_i2c.ino" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit_SSD1306/examples/ssd1306_128x32_i2c/ssd1306_128x32_i2c.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit_SSD1306/examples/ssd1306_128x32_spi/ssd1306_128x32_spi.ino" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit_SSD1306/examples/ssd1306_128x32_spi/ssd1306_128x32_spi.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit_SSD1306/examples/ssd1306_128x64_i2c/ssd1306_128x64_i2c.ino" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit_SSD1306/examples/ssd1306_128x64_i2c/ssd1306_128x64_i2c.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit_SSD1306/examples/ssd1306_128x64_spi/ssd1306_128x64_spi.ino" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit_SSD1306/examples/ssd1306_128x64_spi/ssd1306_128x64_spi.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit_SSD1306/library.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit_SSD1306/library.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Adafruit_SSD1306/license.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Adafruit_SSD1306/license.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/emulator/Arduino.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Arduino.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/emulator/Arduino.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/Arduino.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/emulator/LTexture.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/LTexture.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/emulator/LTexture.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/LTexture.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/emulator/emulator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/emulator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/emulator/ui.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/ui.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/emulator/ui.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/hal/x64/ui.h" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FUSProjectUsageTrigger">
+    <session id="-759258604">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.8" value="2" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="txt" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CMakeLists.txt" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="cpp" value="8" />
+          <entry key="txt" value="9" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="CMakeLists.txt" value="9" />
+          <entry key="ObjectiveC" value="8" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="44" column="39" lean-forward="true" selection-start-line="44" selection-start-column="39" selection-end-line="44" selection-end-column="39" />
+            <state>
+              <caret column="10" selection-start-column="10" selection-end-column="10" />
               <folding>
-                <element signature="e#0#20#0" expanded="true" />
-                <element signature="e#396#436#0" />
-                <element signature="e#438#628#0" />
+                <element signature="e#294#549#0" />
+                <element signature="e#551#786#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="197">
+              <caret line="24" column="16" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -82,12 +206,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths />
-  </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="228" />
-    <option name="y" value="7" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="209" />
+    <option name="y" value="-23" />
     <option name="width" value="1819" />
     <option name="height" value="1129" />
   </component>
@@ -128,6 +249,19 @@
               <item name="code-emulator" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="MrEmulator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code-emulator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="hal" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MrEmulator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code-emulator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="hal" type="462c0819:PsiDirectoryNode" />
+              <item name="x64" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -142,6 +276,11 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="CPPToolchains" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\mr-plate\code-emulator\src\hal\x64" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -155,8 +294,16 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.MrEmulator">
-    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all" />
-    <configuration name="MrEmulator" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MrEmulator" TARGET_NAME="MrEmulator" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="MrEmulator" RUN_TARGET_NAME="MrEmulator" />
+    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MrEmulator" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MrEmulator" TARGET_NAME="MrEmulator" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="MrEmulator" RUN_TARGET_NAME="MrEmulator">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Build All" />
       <item itemvalue="Application.MrEmulator" />
@@ -182,11 +329,13 @@
       <workItem from="1532532959927" duration="1369000" />
       <workItem from="1532538727376" duration="740000" />
       <workItem from="1532539487276" duration="12119000" />
+      <workItem from="1532556327189" duration="80000" />
+      <workItem from="1532556433249" duration="932000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35459000" />
+    <option name="totallyTimeSpent" value="36471000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -198,26 +347,29 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="228" y="7" width="1819" height="1129" extended-state="0" />
+    <frame x="-8" y="-8" width="2064" height="1138" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49854228" visible="true" weight="0.11622684" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4995064" />
-      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.85538006" weight="0.315" />
-      <window_info anchor="bottom" id="CMake" order="7" sideWeight="0.8415597" weight="0.362" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5004936" side_tool="true" weight="0.903" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4995064" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49605134" weight="0.329" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4995064" weight="0.903" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49854228" visible="true" weight="0.123253495" />
       <window_info id="Structure" order="1" sideWeight="0.50145775" side_tool="true" weight="0.09472656" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4995064" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49605134" visible="true" weight="0.32868525" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4995064" />
+      <window_info anchor="bottom" id="CMake" order="7" sideWeight="0.8415597" weight="0.3615538" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5004936" side_tool="true" weight="0.903" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4995064" weight="0.903" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.85538006" weight="0.31474105" />
+      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,242 +379,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="51" column="29" selection-start-line="51" selection-start-column="29" selection-end-line="51" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/example.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/ui.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/Arduino.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="16" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Adafruit-GFX-Library/fontconvert/Makefile">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/emulator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/ui.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" selection-start-column="9" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-            <element signature="e#345#1407#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="51" column="29" selection-start-line="51" selection-start-column="29" selection-end-line="51" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/example.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/ui.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/Arduino.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="16" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Adafruit-GFX-Library/fontconvert/Makefile">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/emulator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/ui.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" selection-start-column="9" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-            <element signature="e#345#1407#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="51" column="29" selection-start-line="51" selection-start-column="29" selection-end-line="51" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/example.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/ui.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/Arduino.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="16" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Adafruit-GFX-Library/fontconvert/Makefile">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/emulator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/ui.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="49" column="15" selection-start-line="49" selection-start-column="15" selection-end-line="49" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-            <element signature="e#345#1407#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/ui.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="43" column="42" lean-forward="true" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-            <element signature="e#345#1407#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/state/init.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="42" column="50" selection-start-line="42" selection-start-column="50" selection-end-line="42" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/state/menu.h">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/Arduino.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="21" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cmake/FindSDL2_image.cmake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="60" column="31" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cmake/FindSDL2_ttf.cmake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1632">
-          <caret line="96" selection-start-line="96" selection-end-line="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/example.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/ui.h">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/ui.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="15" selection-start-column="15" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-            <element signature="e#345#1407#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/emulator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="8" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/state/menu.h">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -473,7 +389,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/LTexture.h">
+    <entry file="file://$PROJECT_DIR$/src/hal/x64/LTexture.h">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/cmake/FindSDL2_ttf.cmake">
@@ -483,30 +399,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/Arduino.h">
+    <entry file="file://$PROJECT_DIR$/src/hal/x64/Arduino.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="16" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/emulator.cpp">
+    <entry file="file://$PROJECT_DIR$/src/hal/x64/emulator.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="2" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="2" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/ui.h">
+    <entry file="file://$PROJECT_DIR$/src/hal/x64/ui.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Adafruit-GFX-Library/fontconvert/Makefile">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Adafruit-GFX-Library/fontconvert/Makefile" />
     <entry file="file://$PROJECT_DIR$/cmake/FindSDL2_image.cmake">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
@@ -514,54 +428,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmake/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="255">
-            <caret line="57" column="11" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="11" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/CMakeLists.txt">
+    <entry file="file://$PROJECT_DIR$/cmake/README.md" />
+    <entry file="file://$PROJECT_DIR$/src/emulator/CMakeLists.txt" />
+    <entry file="file://$PROJECT_DIR$/src/example.cpp" />
+    <entry file="file://$PROJECT_DIR$/src/hal/x64/ui.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="73" selection-start-line="14" selection-start-column="73" selection-end-line="14" selection-end-column="73" />
+        <state>
+          <caret column="9" selection-start-column="9" selection-end-column="9" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/example.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-357" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11">
-          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/ui.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" selection-start-column="9" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-            <element signature="e#345#1407#0" />
-          </folding>
+        <state relative-caret-position="197">
+          <caret line="24" column="16" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="44" column="39" lean-forward="true" selection-start-line="44" selection-start-column="39" selection-end-line="44" selection-end-column="39" />
+        <state>
+          <caret column="10" selection-start-column="10" selection-end-column="10" />
           <folding>
-            <element signature="e#0#20#0" expanded="true" />
-            <element signature="e#396#436#0" />
-            <element signature="e#438#628#0" />
+            <element signature="e#294#549#0" />
+            <element signature="e#551#786#0" />
           </folding>
         </state>
       </provider>

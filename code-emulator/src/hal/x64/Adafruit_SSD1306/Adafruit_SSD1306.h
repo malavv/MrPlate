@@ -1,10 +1,10 @@
 #ifndef _Adafruit_SSD1306_H_
 #define _Adafruit_SSD1306_H_
 
-#include "../Adafruit-GFX-Library/Adafruit_GFX.h"
+#include "hal/x64/Adafruit-GFX-Library/Adafruit_GFX.h"
 
-#include "Arduino.h"
-#include "ui.h"
+#include "hal/x64/Arduino.h"
+#include "hal/x64/ui.h"
 
 #define BLACK 0
 #define WHITE 1

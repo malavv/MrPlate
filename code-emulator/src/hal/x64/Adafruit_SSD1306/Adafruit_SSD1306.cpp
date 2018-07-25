@@ -8,7 +8,7 @@
 #include <sstream>
 #include <SDL.h>
 #include <atomic>
-#include "ui.h"
+#include "hal/x64/ui.h"
 
 UI* Adafruit_SSD1306::ui = NULL;
 
