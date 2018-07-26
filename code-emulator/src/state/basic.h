@@ -4,6 +4,7 @@
 #include "Adafruit_SSD1306.h"
 #include "state/init.h"
 #include "state/menu.h"
+#include "pins.h"
 
 extern Adafruit_SSD1306 display;
 
@@ -25,7 +26,7 @@ public:
 
 		display.setCursor(85, 12);
 		display.println(power);
-
+		analogWrite(PIN_PWM_FTM0, power);
 		display.display();
 
 		delay(30);

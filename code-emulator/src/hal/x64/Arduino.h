@@ -48,6 +48,9 @@ inline void delay(unsigned long ms) {
 inline void digitalWrite(int8_t pin, int8_t val) {}
 inline void pinMode(int8_t pin, int8_t val) {}
 inline void attachInterrupt(int8_t pin, void (*callback)(), int8_t val) {}
+inline void analogWriteResolution(int8_t) {}
+inline void analogWriteFrequency(int8_t, float) {}
+inline void analogWrite(int8_t, int32_t) {}
 
 struct ISerial {
 	void begin(short baud) {}

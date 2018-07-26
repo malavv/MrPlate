@@ -42,6 +42,9 @@ void setup() {
 
   attachInterrupt(PIN_BACK_BTN, onBackButtonReleased, RISING);
   attachInterrupt(PIN_WHEEL_BTN, onWheelReleased, RISING);
+
+  analogWriteResolution(12); // analogWrite value 0 to 4095, or 4096 for high
+  analogWriteFrequency(PIN_PWM_FTM0, 11718.75); // Teensy 3.0 pin 3 also changes to 375 kHz
 }
 
 bool pool_wheel(int8_t &delta) {
@@ -50,7 +53,7 @@ bool pool_wheel(int8_t &delta) {
     return false;
   if (abs(wheel_pos - pos) > 1000)
     return false;
-  delta = constrain(wheel_pos - pos, -1000, 1000);
+  delta = (int8_t)constrain(wheel_pos - pos, -1000, 1000);
   wheel_pos = pos;
   return true;
 }
