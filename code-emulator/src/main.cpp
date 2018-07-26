@@ -13,10 +13,9 @@
 
 Adafruit_SSD1306 display(PIN_OLED_RESET);
 State *lastState, *state, *states[5];
-Encoder wheel(16, 17);
+Encoder wheel(PIN_WHEEL_1, PIN_WHEEL_2);
 int32_t wheel_pos = LONG_MIN;
 int8_t wheel_delta = 0;
-
 
 // Set of callback to be used by the Hardware Abstraction Layer (Teensy or Emulator)
 void onBackButtonReleased() { state->backPressed(); }

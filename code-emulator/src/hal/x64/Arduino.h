@@ -20,18 +20,21 @@ enum PIN_MODE {
 	OUTPUT,
 	INPUT_PULLUP
 };
+
 enum PIN_LEVEL {
 	LOW = 0,
 	HIGH
 };
+
 enum INTERRUPT_MODE {
-	LOW,
 	CHANGE,
 	RISING,
 	FALLING
 };
 
 typedef bool boolean;
+
+#define constrain(v, l, h) ((v) < (l) ? (l) : (v) > (h) ? (h) : (v))
 
 inline long random(long min, long max) {
 	return rand() % (max - min) + min;
@@ -44,8 +47,7 @@ inline void delay(unsigned long ms) {
 }
 inline void digitalWrite(int8_t pin, int8_t val) {}
 inline void pinMode(int8_t pin, int8_t val) {}
-inline void attachInterrupt(int8_t pin, void (*callback)(void), int8_t val);
-
+inline void attachInterrupt(int8_t pin, void (*callback)(), int8_t val) {}
 
 struct ISerial {
 	void begin(short baud) {}
