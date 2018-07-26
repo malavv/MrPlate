@@ -1,6 +1,8 @@
 #include "Arduino.h"
+#include "limits.h"
 
 #include "Adafruit_SSD1306.h"
+#include "Encoder.h"
 
 #include "state/state.h"
 #include "state/init.h"
@@ -11,6 +13,10 @@
 
 Adafruit_SSD1306 display(PIN_OLED_RESET);
 State *lastState, *state, *states[5];
+Encoder wheel(16, 17);
+int32_t wheel_pos = LONG_MIN;
+int8_t wheel_delta = 0;
+
 
 // Set of callback to be used by the Hardware Abstraction Layer (Teensy or Emulator)
 void onBackButtonReleased() { state->backPressed(); }
@@ -22,7 +28,8 @@ void onReadSpeedInDeciRPM(short rpm) {}
 void setup() {
   Serial.begin(9600);
 
-  pinMode(PIN_BACK_BTN,INPUT_PULLUP);
+  pinMode(PIN_BACK_BTN, INPUT_PULLUP);
+  pinMode(PIN_WHEEL_BTN, INPUT_PULLUP);
   pinMode(PIN_LED, OUTPUT);
 
   states[0] = new Initializing();
@@ -34,8 +41,19 @@ void setup() {
   state = states[0];
   lastState = state;
 
-  digitalWrite(PIN_LED, HIGH);
   attachInterrupt(PIN_BACK_BTN, onBackButtonReleased, RISING);
+  attachInterrupt(PIN_WHEEL_BTN, onWheelReleased, RISING);
+}
+
+bool pool_wheel(int8_t &delta) {
+  const int32_t pos = wheel.read();
+  if (pos == wheel_pos)
+    return false;
+  if (abs(wheel_pos - pos) > 1000)
+    return false;
+  delta = constrain(wheel_pos - pos, -1000, 1000);
+  wheel_pos = pos;
+  return true;
 }
 
 // Main loop dealing with states and events
@@ -46,6 +64,9 @@ void loop() {
       return;
     if (state->id() != lastState->id())
       state->onEnter();
+    if (pool_wheel(wheel_delta))
+      onWheelScrolled(wheel_delta);
+
     lastState = state;
   }
 }
