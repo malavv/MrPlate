@@ -17,6 +17,10 @@ Encoder wheel(PIN_WHEEL_1, PIN_WHEEL_2);
 int32_t wheel_pos = LONG_MIN;
 int8_t wheel_delta = 0;
 
+#ifdef IS_EMULATED
+extern bool isRunning;
+#endif
+
 // Set of callback to be used by the Hardware Abstraction Layer (Teensy or Emulator)
 void onBackButtonReleased() { state->backPressed(); }
 void onWheelReleased() { state->selectPressed(); }
@@ -70,5 +74,10 @@ void loop() {
       onWheelScrolled(wheel_delta);
 
     lastState = state;
+
+    #ifdef IS_EMULATED
+    if (!isRunning)
+      return;
+    #endif
   }
 }

@@ -51,6 +51,7 @@ set(SOURCE_FILES
 # Declare MrPlate Executable
 add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${ADD_LIB_SOURCES} ${ADD_EMULATOR_SOURCES})
 
+add_compile_definitions(IS_EMULATED)
 # Add Includes
 target_include_directories(${PROJECT_NAME} PUBLIC ${ADASSD1306} ${ADAGFX} ${ENCODER} ${SDL2_INCLUDES} src/hal/x64)
 # Add Libraires

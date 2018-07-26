@@ -3,10 +3,13 @@
 #include "Adafruit_SSD1306.h"
 
 #include "SDL.h"
+#include <iostream>
 
 // function call from Arduino
 void setup();
 void loop();
+
+volatile bool isRunning = true;
 
 // UI main code, launching Arduino on a separate thread.
 int main(int, char**) {
@@ -23,6 +26,7 @@ int main(int, char**) {
 	
 	ui.evtloop();
 
+  isRunning = false;
 	th.join();
 
 	return 0;
