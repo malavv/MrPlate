@@ -1,6 +1,7 @@
 #include "ui.h"
 
 #include <iostream>
+#include <sstream>
 #include <string>
 #include "SDL.h"
 #include "SDL_image.h"
@@ -8,6 +9,7 @@
 #include <atomic>
 #include <cmath>
 #include "LTexture.h"
+#include "Arduino.h"
 
 void onBackButtonReleased();
 void onWheelReleased();
@@ -51,9 +53,6 @@ int UI::setup() {
     return 1;
 	}
 
-	SDL_Color textColor = { 255, 255, 255 };
-  gTextTexture.loadFromRenderedText("hw rpm : 0", textColor, gFont, renderer);
-
 	return 0;
 }
 
@@ -62,9 +61,25 @@ void UI::redraw() {
 	SDL_RenderClear(renderer);
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 	SDL_RenderDrawRect(renderer, &_lcd);
-	drawControls(renderer, 532, 10, 10, 60, rad);
+	drawControls(renderer, 532, 10, 10, 160, rad);
 	swapBufferToScreen();
-  gTextTexture.render(30, 150, nullptr, 0.0, nullptr, SDL_FLIP_NONE, renderer);
+
+	// Draw Buttom
+	SDL_Color textColor = { 255, 255, 255 };
+	TTF_Font* font12 = TTF_OpenFont("hack.ttf", 12);
+
+	std::ostringstream oss;
+	const int dx = 240;
+	const int dy = 15;
+	for (auto &msg : debugMsg) {
+		const int x = msg->pin > 16 ? 2 : msg->pin > 8 ? 1 : 0;
+		const int y = msg->pin % 8;
+		oss << "<" << (int)msg->pin << "> " << msg->msg << " : " << msg->val;
+		gTextTexture.loadFromRenderedText(oss.str(), textColor, font12, renderer);
+		gTextTexture.render(10 + x * dx, 155 + y * dy, nullptr, 0.0, nullptr, SDL_FLIP_NONE, renderer);
+		oss.str("");
+	}
+
 	SDL_RenderPresent(renderer);
 }
 

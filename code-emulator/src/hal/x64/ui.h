@@ -12,11 +12,11 @@
 class UI {
 public:
 	UI() {
-		_ui = { 0, 0, 592, 148 };
+		_ui = { 0, 0, 592, 248 };
 		_lcd = { 10, 10, 512, 128 };
 		_ssd1306 = { 0, 0, 128, 32 };
-		_backBtn = { 537, 85, 40, 40 };
-		_wheelBtn = { 534, 20, 45, 45 };
+		_backBtn = { 587, 85, 40, 40 };
+		_wheelBtn = { 584, 20, 45, 45 };
 
 		nBytes = (_ssd1306.h * _ssd1306.w) / 8;
 		_writeBuffer = new uint8_t[nBytes];
@@ -61,8 +61,8 @@ private:
 	void redraw();
 	void swapBufferToScreen();
 
-	static const int width = 592;
-	static const int height = 198;
+	static const int width = 692;
+	static const int height = 298;
 
 	static UI* _instance;
 

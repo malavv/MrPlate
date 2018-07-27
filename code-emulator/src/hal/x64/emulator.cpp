@@ -9,7 +9,7 @@
 void setup();
 void loop();
 
-volatile bool isRunning = true;
+extern bool isRunning;
 
 // UI main code, launching Arduino on a separate thread.
 int main(int, char**) {

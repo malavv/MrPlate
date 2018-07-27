@@ -17,9 +17,8 @@ Encoder wheel(PIN_WHEEL_1, PIN_WHEEL_2);
 int32_t wheel_pos = LONG_MIN;
 int8_t wheel_delta = 0;
 
-#ifdef IS_EMULATED
-extern bool isRunning;
-#endif
+// Create it for the purpose of terminating the emulation.
+volatile bool isRunning = true;
 
 // Set of callback to be used by the Hardware Abstraction Layer (Teensy or Emulator)
 void onBackButtonReleased() { state->backPressed(); }
@@ -51,6 +50,7 @@ void setup() {
   analogWriteFrequency(PIN_PWM_FTM0, 11718.75); // Teensy 3.0 pin 3 also changes to 375 kHz
 }
 
+// Reading Rotary Encoder
 bool pool_wheel(int8_t &delta) {
   const int32_t pos = wheel.read();
   if (pos == wheel_pos)
@@ -64,7 +64,7 @@ bool pool_wheel(int8_t &delta) {
 
 // Main loop dealing with states and events
 void loop() {
-  while (true) {
+  while (isRunning /* Always True on Arduino */) {
     state = states[state->process()];
     if (!state)
       return;
@@ -74,10 +74,5 @@ void loop() {
       onWheelScrolled(wheel_delta);
 
     lastState = state;
-
-    #ifdef IS_EMULATED
-    if (!isRunning)
-      return;
-    #endif
   }
 }
